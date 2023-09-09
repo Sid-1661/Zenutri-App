@@ -1,16 +1,48 @@
 # zenutri_app
 
-A new Flutter project.
+The primary objective of this app is to offer users an intuitive, seamless, personalized vitamin selection experience.
 
-## Getting Started
+## Project Configuration
 
-This project is a starting point for a Flutter application.
+flutter version : 3.10.6
 
-A few resources to get you started if this is your first Flutter project:
+### Set up
+1. Clone the application from git.
+2. Run the command
+  `` flutter pub get ``
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Project architecture
+We are following feature-first architecture. And inside feature you will find the layering
+architecture with BLoC, clean architecture and other clean code practices.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+zenutri_app
+├── application
+├── common
+│   ├── data
+│   │   ├── models
+│   │   └── repositories
+│   ├── domain
+│   │   └── entities  
+│   ├── presentation
+│   │   ├── blocs
+│   │   └── ui
+│   │       ├── screens
+│   │       ├── widgets
+│   │       └── utils
+│   └── features
+│       └── fetureA
+│           ├── data
+│           │   ├── models
+│           │   └── repositories
+│           ├── domain
+│           │   └── entities  
+│           └── presentation
+│               ├── blocs
+│               └── ui
+│                   ├── screens
+│                   ├── widgets
+│                   └── utils
+└── main.dart
+
+```
