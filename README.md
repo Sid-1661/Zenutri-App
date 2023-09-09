@@ -45,3 +45,5 @@ zenutri_app
 │               └── utils
 └── main.dart
 ```
+## Packages
+Before you start contribute to this project, you need to know bloc, repository pattern, equatable and dartz.
