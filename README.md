@@ -24,25 +24,24 @@ zenutri_app
 │   │   └── repositories
 │   ├── domain
 │   │   └── entities  
-│   ├── presentation
-│   │   ├── blocs
-│   │   └── ui
-│   │       ├── screens
-│   │       ├── widgets
-│   │       └── utils
-│   └── features
-│       └── fetureA
-│           ├── data
-│           │   ├── models
-│           │   └── repositories
-│           ├── domain
-│           │   └── entities  
-│           └── presentation
-│               ├── blocs
-│               └── ui
-│                   ├── screens
-│                   ├── widgets
-│                   └── utils
+│   └── presentation
+│       ├── blocs
+│       └── ui
+│           ├── screens
+│           ├── widgets
+│           └── utils
+├── features
+│   └── fetureA
+│       ├── data
+│       │   ├── models
+│       │   └── repositories
+│       ├── domain
+│       │   └── entities  
+│       └── presentation
+│           ├── blocs
+│           └── ui
+│               ├── screens
+│               ├── widgets
+│               └── utils
 └── main.dart
-
 ```
