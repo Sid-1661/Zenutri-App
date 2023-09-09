@@ -15,14 +15,46 @@ class ZenutriApp extends StatelessWidget {
           AppColors.colorPalette,
         ),
         fontFamily: 'Outfit',
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(
+            letterSpacing: 0.5
+          )
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
+            textStyle: const TextStyle(
+                fontSize: 16,
+                color: AppColors.white,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.5
+            ),
             padding: const EdgeInsets.symmetric(
               vertical: 14,
               horizontal: 32,
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(
+              color: AppColors.primaryColor,
+              width: 2,
+            ),
+            textStyle: const TextStyle(
+              fontSize: 16,
+              color: AppColors.white,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.5
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: 14,
+              horizontal: 32,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
             ),
           ),
         ),
