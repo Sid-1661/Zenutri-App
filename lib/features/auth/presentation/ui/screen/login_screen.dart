@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screen/signup_screen.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -101,7 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
           verticalSpace(24),
           Center(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.to(const SignUpScreen());
+              },
               child: RichText(
                 text: TextSpan(
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
