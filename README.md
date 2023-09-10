@@ -10,6 +10,8 @@ flutter version : 3.10.6
 1. Clone the application from git.
 2. Run the command
   `` flutter pub get ``
+3. Open emulator or simulator
+4. Select the device and run the project
 
 ## Project architecture
 We are following feature-first architecture. And inside feature you will find the layering
