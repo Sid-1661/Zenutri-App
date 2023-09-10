@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screen/verify_otp_screen.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_login_text_button.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
 
@@ -163,9 +165,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             width: 100.w,
             child: ElevatedButton(
               onPressed: () {
-                if (_formKey.currentState?.validate() ?? false) {
-
-                }
+                // if (_formKey.currentState?.validate() ?? false) {
+                // }
+                Get.to(const VerifyOtpScreen());
               },
               child: const Text('Create Account'),
             ),
