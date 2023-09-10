@@ -5,6 +5,7 @@ import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screen/login_screen.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screen/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -63,7 +64,9 @@ class WelcomeScreen extends StatelessWidget {
           SizedBox(
             width: 100.w,
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(const SignUpScreen());
+              },
               child: const Text('Sign up'),
             ),
           ),

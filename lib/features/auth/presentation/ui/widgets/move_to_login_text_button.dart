@@ -13,7 +13,7 @@ class MoveToLoginTextButton extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () {
-          Get.offAll(const LoginScreen());
+          Get.off(const LoginScreen());
         },
         child: RichText(
           text: TextSpan(
