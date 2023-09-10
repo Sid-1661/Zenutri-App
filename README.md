@@ -48,4 +48,4 @@ zenutri_app
 └── main.dart
 ```
 ## Packages
-Before you start contribute to this project, you need to know bloc, repository pattern, equatable and dartz.
+Before you start contribute to this project, you need to know getx, repository pattern, equatable and dartz.
