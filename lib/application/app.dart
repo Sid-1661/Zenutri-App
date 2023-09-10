@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screen/splash_screen.dart';
 
 class ZenutriApp extends StatelessWidget {
@@ -8,6 +9,9 @@ class ZenutriApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    ScreenSizes.screenWidth = size.width;
+    ScreenSizes.screenHeight = size.height;
     return GetMaterialApp(
       theme: ThemeData(
         primarySwatch: MaterialColor(
@@ -15,10 +19,20 @@ class ZenutriApp extends StatelessWidget {
           AppColors.colorPalette,
         ),
         fontFamily: 'Outfit',
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(
-            letterSpacing: 0.5
-          )
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(
+            letterSpacing: 0.5,
+            fontSize: 14.rSp
+          ),
+          bodyLarge: TextStyle(
+            letterSpacing: 0.5,
+            fontSize: 17.rSp
+          ),
+          titleLarge: TextStyle(
+            fontSize: 32.rSp,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.37,
+          ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -34,6 +48,16 @@ class ZenutriApp extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               vertical: 14,
               horizontal: 32,
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            textStyle: TextStyle(
+                fontSize: 17.rSp,
+                color: AppColors.white,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.5
             ),
           ),
         ),
@@ -56,6 +80,13 @@ class ZenutriApp extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(50),
+            borderSide: const BorderSide(color: AppColors.graniteGray),
           ),
         ),
       ),

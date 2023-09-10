@@ -18,6 +18,8 @@ class AppColors {
   static const Color primaryColor = Color(0xFF006E53);
   static const Color azureMist = Color(0xFFE6F5F1);
   static const Color graniteGray = Color(0xFF626262);
+  static const Color 	shadowGray = Color(0xFF444444);
+  static const Color 	eerieBlack = Color(0xFF242424);
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
 }
