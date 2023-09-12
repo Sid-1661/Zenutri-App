@@ -15,8 +15,8 @@ class AppColors {
     900:const Color.fromRGBO(4,131,184, 1),
   };
 
-  static const Color primaryColor = Color(0xFF006E53);
-  static const Color azureMist = Color(0xFFE6F5F1);
+  static const Color primaryColor = Color(0xFF3F9E11);
+  static const Color honeydew = Color(0xFFE9F5E4);
   static const Color graniteGray = Color(0xFF626262);
   static const Color shadowGray = Color(0xFF444444);
   static const Color eerieBlack = Color(0xFF242424);

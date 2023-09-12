@@ -13,7 +13,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.azureMist,
+      backgroundColor: AppColors.honeydew,
       body: Stack(
         children: [
           backImageWithShaderMask,
@@ -82,7 +82,7 @@ class WelcomeScreen extends StatelessWidget {
         return const LinearGradient(
           begin: Alignment.center,
           end: Alignment.bottomCenter,
-          colors: [AppColors.azureMist, Colors.transparent],
+          colors: [AppColors.honeydew, Colors.transparent],
         ).createShader(
           Rect.fromLTRB(0, 0, rect.width, rect.height),
         );

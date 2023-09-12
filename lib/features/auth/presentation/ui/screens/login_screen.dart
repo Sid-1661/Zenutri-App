@@ -61,8 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           verticalSpace(24),
           TextFormField(
-            decoration: const InputDecoration(hintText: 'Email'),
-            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(hintText: 'Phone number'),
+            keyboardType: TextInputType.phone,
             textInputAction: TextInputAction.next,
           ),
           verticalSpace(16),
