@@ -4,8 +4,8 @@ import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
-import 'package:zenutri_app/features/auth/presentation/ui/screen/login_screen.dart';
-import 'package:zenutri_app/features/auth/presentation/ui/screen/signup_screen.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screens/login_screen.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screens/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
