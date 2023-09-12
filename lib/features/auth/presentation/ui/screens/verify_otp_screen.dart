@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:otp_timer_button/otp_timer_button.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screens/reset_new_password.dart';
+import 'package:zenutri_app/features/dashboard/presentation/ui/screens/dashboard_main_nav_screen.dart';
+
+enum VerifyOtpScreenType {
+  resetPassword,
+  signUp
+}
 
 class VerifyOtpScreen extends StatefulWidget {
-  const VerifyOtpScreen({super.key});
+  final VerifyOtpScreenType screenType;
+  const VerifyOtpScreen({super.key, required this.screenType});
 
   @override
   State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
@@ -100,7 +109,13 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             SizedBox(
               width: 100.w,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.screenType == VerifyOtpScreenType.resetPassword) {
+                    Get.to(const ResetNewPasswordScreen());
+                  } else {
+                    Get.to(const DashboardMainNavScreen());
+                  }
+                },
                 child: const Text('Verify Now'),
               ),
             ),

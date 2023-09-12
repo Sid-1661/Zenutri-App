@@ -165,9 +165,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             width: 100.w,
             child: ElevatedButton(
               onPressed: () {
-                // if (_formKey.currentState?.validate() ?? false) {
-                // }
-                Get.to(const VerifyOtpScreen());
+                if (_formKey.currentState?.validate() ?? false) {
+                  Get.to(
+                    const VerifyOtpScreen(
+                      screenType: VerifyOtpScreenType.signUp,
+                    ),
+                  );
+                }
               },
               child: const Text('Create Account'),
             ),

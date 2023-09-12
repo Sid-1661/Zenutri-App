@@ -45,9 +45,9 @@ class ZenutriApp extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 letterSpacing: 0.5
             ),
-            padding: const EdgeInsets.symmetric(
-              vertical: 14,
-              horizontal: 32,
+            padding: EdgeInsets.symmetric(
+              vertical: 16.rh,
+              horizontal: 32.rw,
             ),
           ),
         ),

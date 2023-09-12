@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screens/verify_otp_screen.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_sign_up_text_button.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
+import 'package:zenutri_app/features/dashboard/presentation/ui/screens/dashboard_main_nav_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -86,7 +89,13 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(
+                    const VerifyOtpScreen(
+                        screenType: VerifyOtpScreenType.resetPassword,
+                    ),
+                  );
+                },
                 child: const Text('Forgot Password?'),
               ),
             ],
@@ -95,7 +104,9 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             width: 100.w,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.offAll(const DashboardMainNavScreen());
+              },
               child: const Text('Login'),
             ),
           ),
