@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:otp_timer_button/otp_timer_button.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
-import 'package:zenutri_app/features/auth/presentation/ui/widgets/verify_otp/countdown_widget.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   const VerifyOtpScreen({super.key});
@@ -14,6 +14,8 @@ class VerifyOtpScreen extends StatefulWidget {
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final TextEditingController _otpTEController = TextEditingController();
+  OtpTimerButtonController controller = OtpTimerButtonController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,18 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               appContext: context,
             ),
             verticalSpace(12),
-            const Center(child: CountdownWidget()),
+            Center(child: OtpTimerButton(
+              controller: controller,
+              onPressed: () {
+                controller.startTimer();
+              },
+              text: const Text('Resend OTP', style: TextStyle(
+                fontWeight: FontWeight.w700
+              ),),
+              duration: 30,
+              buttonType: ButtonType.text_button,
+            ),
+            ),
             const Spacer(),
             SizedBox(
               width: 100.w,
@@ -94,5 +107,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           ],
         ),
       );
+  }
+
+  @override
+  void dispose() {
+    _otpTEController.dispose();
+    super.dispose();
   }
 }
