@@ -21,6 +21,7 @@ class AppColors {
   static const Color shadowGray = Color(0xFF444444);
   static const Color eerieBlack = Color(0xFF242424);
   static const Color manatee = Color(0xFF9699A3);
+  static const Color darkBlueBlack = Color(0xFF130F26);
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
 }
