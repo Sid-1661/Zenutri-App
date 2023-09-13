@@ -3,6 +3,7 @@ import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/dashboard/presentation/ui/screens/home_screen.dart';
 
 class DashboardMainNavScreen extends StatefulWidget {
   const DashboardMainNavScreen({super.key});
@@ -13,10 +14,17 @@ class DashboardMainNavScreen extends StatefulWidget {
 
 class _DashboardMainNavScreenState extends State<DashboardMainNavScreen> {
   int _selectedIndex = 0;
+  List<Widget> _screens = [
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: _screens[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           boxShadow: <BoxShadow>[

@@ -8,4 +8,5 @@ class ImageAssets {
   static const String favouriteSvg = 'assets/icons/favourite.svg';
   static const String cartSvg = 'assets/icons/cart.svg';
   static const String profileSvg = 'assets/icons/profile.svg';
+  static const String recommendMedicineBgJpg = 'assets/images/recommend-medicine-bg.jpg';
 }

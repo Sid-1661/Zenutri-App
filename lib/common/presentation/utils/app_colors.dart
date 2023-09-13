@@ -16,6 +16,7 @@ class AppColors {
   };
 
   static const Color primaryColor = Color(0xFF3F9E11);
+  static const Color teaGreen = Color(0xFFDAF6CD);
   static const Color honeydew = Color(0xFFE9F5E4);
   static const Color graniteGray = Color(0xFF626262);
   static const Color shadowGray = Color(0xFF444444);
