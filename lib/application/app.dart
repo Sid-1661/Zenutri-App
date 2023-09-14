@@ -28,6 +28,10 @@ class ZenutriApp extends StatelessWidget {
             letterSpacing: 0.5,
             fontSize: 17.rSp
           ),
+          bodySmall: TextStyle(
+            letterSpacing: 0.5,
+            fontSize: 12.rSp
+          ),
           titleLarge: TextStyle(
             fontSize: 32.rSp,
             fontWeight: FontWeight.w700,
