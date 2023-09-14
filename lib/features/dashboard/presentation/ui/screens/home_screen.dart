@@ -3,7 +3,7 @@ import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/widgets/home/home_banner_widget.dart';
-import 'package:zenutri_app/features/dashboard/presentation/ui/widgets/product_card.dart';
+import 'package:zenutri_app/common/presentation/widgets/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

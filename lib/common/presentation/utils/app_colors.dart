@@ -19,6 +19,7 @@ class AppColors {
   static const Color teaGreen = Color(0xFFDAF6CD);
   static const Color honeydew = Color(0xFFE9F5E4);
   static const Color graniteGray = Color(0xFF626262);
+  static const Color aluminium = Color(0xFF8E8E8E);
   static const Color shadowGray = Color(0xFF444444);
   static const Color eerieBlack = Color(0xFF242424);
   static const Color manatee = Color(0xFF9699A3);
