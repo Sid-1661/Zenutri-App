@@ -93,6 +93,18 @@ class ZenutriApp extends StatelessWidget {
             borderSide: const BorderSide(color: AppColors.graniteGray),
           ),
         ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.white,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontSize: 22.rSp,
+            color: AppColors.black,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.35,
+            fontFamily: 'Outfit'
+          ),
+          elevation: 0,
+        ),
       ),
       home: const SplashScreen(),
     );

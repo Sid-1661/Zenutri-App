@@ -3,6 +3,7 @@ import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/carts/presentation/ui/screens/carts_screen.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/screens/home_screen.dart';
 
 class DashboardMainNavScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _DashboardMainNavScreenState extends State<DashboardMainNavScreen> {
   List<Widget> _screens = [
     HomeScreen(),
     HomeScreen(),
-    HomeScreen(),
+    CartsScreen(),
     HomeScreen(),
   ];
 
