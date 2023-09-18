@@ -5,6 +5,7 @@ import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/product/pesentation/ui/widgets/customer_stepper.dart';
 import 'package:zenutri_app/features/product/pesentation/ui/widgets/product_image_slider.dart';
+import 'package:zenutri_app/features/review/presentation/ui/widgets/product_review_card.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key});
@@ -33,6 +34,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
                       ],
                     ),
                     productDetailsBody,
+                    productReviewSection
                   ],
                 ),
               ),
@@ -40,6 +42,37 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
             bottomCartButtonBar
           ],
         ),
+      ),
+    );
+  }
+
+  Padding get productReviewSection {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.rw),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          verticalSpace(32),
+          Text(
+            'Review(10)',
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: AppColors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+          ),
+          verticalSpace(17),
+          ListView.separated(
+            primary: false,
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return const ProductReviewCard();
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return verticalSpace(24);
+            },
+          ),
+        ],
       ),
     );
   }
