@@ -9,4 +9,7 @@ class ImageAssets {
   static const String cartSvg = 'assets/icons/cart.svg';
   static const String profileSvg = 'assets/icons/profile.svg';
   static const String capsuleBgPng = 'assets/images/capsule-bg.png';
+  static const String editSvg = 'assets/icons/edit.svg';
+  static const String callSvg = 'assets/icons/call.svg';
+  static const String locationSvg = 'assets/icons/location.svg';
 }

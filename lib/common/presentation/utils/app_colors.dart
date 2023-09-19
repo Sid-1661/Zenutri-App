@@ -26,4 +26,5 @@ class AppColors {
   static const Color darkBlueBlack = Color(0xFF130F26);
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color softWhite = Color(0xFFFAFAFA);
 }

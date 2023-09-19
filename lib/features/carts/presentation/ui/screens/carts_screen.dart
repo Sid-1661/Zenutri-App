@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/carts/presentation/ui/widgets/cart_item_list_tile.dart';
+import 'package:zenutri_app/features/checkout/presentation/ui/screens/check_out_screen.dart';
 
 class CartsScreen extends StatefulWidget {
   const CartsScreen({super.key});
@@ -43,7 +45,9 @@ class _CartsScreenState extends State<CartsScreen> {
                 width: 100.w,
                 child: ElevatedButton(
                   child: const Text('Process to Checkout - \$285.3 AUD'),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(const CheckOutScreen());
+                  },
                 ),
               ),
             )
