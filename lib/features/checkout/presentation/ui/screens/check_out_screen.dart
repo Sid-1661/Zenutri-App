@@ -6,6 +6,7 @@ import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/checkout/presentation/ui/widgets/delivery_method_card.dart';
 import 'package:zenutri_app/features/checkout/presentation/ui/widgets/shipping_address_card.dart';
+import 'package:zenutri_app/features/orders/presentation/ui/screens/orders_screen.dart';
 
 class CheckOutScreen extends StatefulWidget {
   const CheckOutScreen({super.key});
@@ -79,7 +80,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               child: ElevatedButton(
                 child: const Text('Place the order'),
                 onPressed: () {
-                  Get.to(const CheckOutScreen());
+                  Get.to(const OrdersScreen());
                 },
               ),
             ),
