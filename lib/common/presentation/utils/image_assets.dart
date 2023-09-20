@@ -12,4 +12,6 @@ class ImageAssets {
   static const String editSvg = 'assets/icons/edit.svg';
   static const String callSvg = 'assets/icons/call.svg';
   static const String locationSvg = 'assets/icons/location.svg';
+  static const String dhlSvg = 'assets/images/dhl.svg';
+  static const String fedexExpressSvg = 'assets/images/fedex-express.svg';
 }
