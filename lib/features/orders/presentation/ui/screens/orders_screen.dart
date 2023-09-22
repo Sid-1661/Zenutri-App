@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/orders/presentation/ui/widgets/order_item_card.dart';
 
-class OrdersScreen extends StatelessWidget {
+class OrdersScreen extends StatefulWidget {
   const OrdersScreen({super.key});
+
+  @override
+  State<OrdersScreen> createState() => _OrdersScreenState();
+}
+
+class _OrdersScreenState extends State<OrdersScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -16,85 +22,73 @@ class OrdersScreen extends StatelessWidget {
           color: AppColors.black,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.rw),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            verticalSpace(6),
-            Text('My Order', style: Theme.of(context).textTheme.titleLarge,),
-            verticalSpace(3),
-            Text('4 Orders', style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.shadowGray
-            ),),
-            verticalSpace(22),
-            Text('Active', style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontSize: 22.rSp
-            ),),
-            verticalSpace(16),
-            Container(
-              padding: EdgeInsets.all(16.rSp),
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.antiFlashWhite, width: 2.rSp),
-                borderRadius: BorderRadius.circular(16.rSp)
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 16.rw, right: 16.rw, bottom: 16.rw),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              verticalSpace(6),
+              Text(
+                'My Order',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Order No. 56987', style: Theme.of(context).textTheme.bodyLarge,),
-                      verticalSpace(8),
-                      Row(
-                        children: [
-                          Text('\$285.30 AUD', style: Theme.of(context).textTheme.bodySmall,),
-                          horizontalSpace(4),
-                          CircleAvatar(
-                            backgroundColor: AppColors.shadowGray,
-                            radius: 4.rSp,
-                          ),
-                          horizontalSpace(4),
-                          Text('30 Sep', style: Theme.of(context).textTheme.bodySmall,),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Container(
-                    width: 46.rSp,
-                    height: 46.rSp,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.rSp),
-                      color: AppColors.teaGreen,
-                      image: const DecorationImage(
-                        image: AssetImage(ImageAssets.capsuleBgPng),
-                      ),
-                    ),
-                  ),
-                  horizontalSpace(6),
-                  Container(
-                    width: 46.rSp,
-                    height: 46.rSp,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.rSp),
-                      color: AppColors.teaGreen,
-                      image: const DecorationImage(
-                        image: AssetImage(ImageAssets.capsuleBgPng),
-                      ),
-                    ),
-                  ),
-                  horizontalSpace(6),
-                  CircleAvatar(
-                    backgroundColor: AppColors.teaGreen,
-                    child: Text('+2', style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 15,
-                      color: AppColors.black
-                    ),),
-                  )
-                ],
+              verticalSpace(3),
+              Text(
+                '4 Orders',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: AppColors.shadowGray),
               ),
-            )
-          ],
+              verticalSpace(22),
+              Text(
+                'Active',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: 22.rSp),
+              ),
+              verticalSpace(16),
+              ListView.separated(
+                itemCount: 2,
+                shrinkWrap: true,
+                primary: false,
+                itemBuilder: (context, index) {
+                  return const OrderItemCard(
+                    isActive: true,
+                    status: 'Shipping',
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return verticalSpace(8);
+                },
+              ),
+              verticalSpace(32),
+              Text(
+                'History',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: 22.rSp),
+              ),
+              verticalSpace(16),
+              ListView.separated(
+                itemCount: 5,
+                shrinkWrap: true,
+                primary: false,
+                itemBuilder: (context, index) {
+                  return const OrderItemCard(
+                    isActive: false,
+                    status: 'Shipping',
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return verticalSpace(8);
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
