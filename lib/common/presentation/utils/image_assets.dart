@@ -14,4 +14,9 @@ class ImageAssets {
   static const String locationSvg = 'assets/icons/location.svg';
   static const String dhlSvg = 'assets/images/dhl.svg';
   static const String fedexExpressSvg = 'assets/images/fedex-express.svg';
+  static const String notificationSvg = 'assets/icons/notification.svg';
+  static const String orderSvg = 'assets/icons/order.svg';
+  static const String paymentCardSvg = 'assets/icons/payment-card.svg';
+  static const String shippingCarSvg = 'assets/icons/shipping-car.svg';
+  static const String refundSvg = 'assets/icons/refund.svg';
 }

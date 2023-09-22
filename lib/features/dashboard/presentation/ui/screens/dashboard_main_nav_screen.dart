@@ -5,6 +5,7 @@ import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/carts/presentation/ui/screens/carts_screen.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/screens/home_screen.dart';
+import 'package:zenutri_app/features/profile/presentation/ui/screens/profile_screen.dart';
 
 class DashboardMainNavScreen extends StatefulWidget {
   const DashboardMainNavScreen({super.key});
@@ -19,7 +20,7 @@ class _DashboardMainNavScreenState extends State<DashboardMainNavScreen> {
     HomeScreen(),
     HomeScreen(),
     CartsScreen(),
-    HomeScreen(),
+    ProfileScreen(),
   ];
 
   @override
