@@ -5,6 +5,7 @@ import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/carts/presentation/ui/screens/carts_screen.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/screens/home_screen.dart';
+import 'package:zenutri_app/features/favourite/presentation/ui/screens/favourite_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/screens/profile_screen.dart';
 
 class DashboardMainNavScreen extends StatefulWidget {
@@ -16,9 +17,9 @@ class DashboardMainNavScreen extends StatefulWidget {
 
 class _DashboardMainNavScreenState extends State<DashboardMainNavScreen> {
   int _selectedIndex = 0;
-  List<Widget> _screens = [
+  final List<Widget> _screens = const [
     HomeScreen(),
-    HomeScreen(),
+    FavouriteScreen(),
     CartsScreen(),
     ProfileScreen(),
   ];

@@ -26,6 +26,13 @@ class ProfileScreen extends StatelessWidget {
             ),
           )
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.rSp),
+          child: Container(
+            color: AppColors.antiFlashWhite,
+            height: 1.rSp,
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.rSp),
