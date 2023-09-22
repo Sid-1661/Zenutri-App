@@ -123,6 +123,33 @@ class ProfileScreen extends StatelessWidget {
               thickness: 1.rSp,
               height: 0,
             ),
+            verticalSpace(131),
+            InkWell(
+              onTap: () {},
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.rh),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.logout_rounded,
+                      size: 24.rSp,
+                      color: Colors.red,
+                    ),
+                    horizontalSpace(16),
+                    Expanded(
+                      child: Text(
+                        'Logout',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontSize: 16.rSp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.red,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
