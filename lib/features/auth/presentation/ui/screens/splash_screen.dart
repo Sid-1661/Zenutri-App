@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
+import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/welcome_screen.dart';
 
@@ -33,10 +34,10 @@ class _SplashScreenState extends State<SplashScreen> {
     ScreenSizes.screenHeight = size.height;
     return Scaffold(
       body: Center(
-        child: Image.asset(
-          ImageAssets.appLogoVertical,
-          height: 228.rSp,
-          width: 228.rSp,
+        child: SvgBuilder(
+          path: ImageAssets.appLogoSvg,
+          height: 208.rSp,
+          width: 210.rSp,
         ),
       ),
     );

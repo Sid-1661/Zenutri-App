@@ -49,8 +49,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           verticalSpace(56),
-          const ZenutriLogoHorizontal(),
-          verticalSpace(48),
+          ZenutriLogo(
+            width: 122.rSp,
+            height: 121.rSp,
+          ),
+          verticalSpace(24),
           Text('Sign Up', style: Theme.of(context).textTheme.titleLarge),
           verticalSpace(16),
           Text(

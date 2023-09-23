@@ -3,6 +3,7 @@ class ImageAssets {
 
   static const String appLogoVertical = 'assets/icons/logo-vertical.png';
   static const String appLogoHorizontal = 'assets/icons/logo-horizontal.png';
+  static const String appLogoSvg = 'assets/images/logo.svg';
   static const String welcomeBg = 'assets/images/welcome-bg.png';
   static const String homeSvg = 'assets/icons/home.svg';
   static const String favouriteSvg = 'assets/icons/favourite.svg';

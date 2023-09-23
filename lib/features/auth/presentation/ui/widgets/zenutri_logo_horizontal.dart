@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
+import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 
-class ZenutriLogoHorizontal extends StatelessWidget {
-  const ZenutriLogoHorizontal({
+class ZenutriLogo extends StatelessWidget {
+  const ZenutriLogo({
     super.key, this.width, this.height,
   });
 
@@ -11,11 +12,10 @@ class ZenutriLogoHorizontal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      ImageAssets.appLogoHorizontal,
+    return SvgBuilder(
+      path: ImageAssets.appLogoSvg,
       width: width?.rw ?? 158.rw,
       height: height?.rh ?? 44.rh,
-      fit: BoxFit.cover,
     );
   }
 }

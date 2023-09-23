@@ -49,8 +49,11 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           verticalSpace(56),
-          const ZenutriLogoHorizontal(),
-          verticalSpace(48),
+          ZenutriLogo(
+            width: 122.rSp,
+            height: 121.rSp,
+          ),
+          verticalSpace(24),
           Text('Login', style: Theme.of(context).textTheme.titleLarge),
           verticalSpace(16),
           Text(
