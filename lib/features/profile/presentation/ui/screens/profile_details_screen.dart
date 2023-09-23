@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/profile/presentation/ui/screens/change_password_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/widgets/profile_option_item_tile.dart';
 
 class ProfileDetailsScreen extends StatelessWidget {
@@ -24,7 +26,7 @@ class ProfileDetailsScreen extends StatelessWidget {
             ),
           ),
         ],
-        leading: BackButton(
+        leading: const BackButton(
           color: AppColors.black,
         ),
         bottom: PreferredSize(
@@ -70,7 +72,9 @@ class ProfileDetailsScreen extends StatelessWidget {
               ProfileOptionItemTile(
                 imagePath: ImageAssets.lockSvg,
                 title: 'Change Password',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const ChangePasswordScreen());
+                },
               ),
               verticalSpace(10),
               Divider(
