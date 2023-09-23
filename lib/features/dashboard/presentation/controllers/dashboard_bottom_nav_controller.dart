@@ -13,4 +13,10 @@ class DashboardBottomNavController extends GetxController {
   void backToHome() {
     changeIndex(0);
   }
+
+  void back() {
+    if (_selectedIndex != 0) {
+      changeIndex(0);
+    }
+  }
 }

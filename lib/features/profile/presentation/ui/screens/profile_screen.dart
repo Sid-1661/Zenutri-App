@@ -5,6 +5,7 @@ import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
 import 'package:zenutri_app/features/orders/presentation/ui/screens/orders_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/screens/profile_details_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/widgets/profile_option_item_tile.dart';
@@ -14,153 +15,159 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      appBar: AppBar(
-        centerTitle: false,
-        title: const Text('Profile'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const SvgBuilder(
-              path: ImageAssets.notificationSvg,
-            ),
-          )
-        ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1.rSp),
-          child: Container(
-            color: AppColors.antiFlashWhite,
-            height: 1.rSp,
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.rSp),
-        child: Column(
-          children: [
-            ListTile(
-              onTap: () {
-                Get.to(const ProfileDetailsScreen());
-              },
-              leading: CircleAvatar(
-                radius: 24.rSp,
-                backgroundImage: const NetworkImage(
-                  'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-                ),
-              ),
-              title: Text(
-                'John Smith',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontSize: 20.rSp,
-                    ),
-              ),
-              subtitle: Text(
-                'john.smith@gmail.com',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.black,
-                    ),
-              ),
-              trailing: CircleAvatar(
-                radius: 17.rSp,
-                backgroundColor: AppColors.antiFlashWhite,
-                child: Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: AppColors.black,
-                  size: 18.rSp,
-                ),
-              ),
-            ),
-            verticalSpace(10),
-            Divider(
-              color: AppColors.antiFlashWhite,
-              thickness: 1.rSp,
-              height: 0,
-            ),
-            verticalSpace(10),
-            ProfileOptionItemTile(
-              imagePath: ImageAssets.orderSvg,
-              title: 'My Order',
-              onTap: () {
-                Get.to(const OrdersScreen());
-              },
-            ),
-            verticalSpace(10),
-            ProfileOptionItemTile(
-              imagePath: ImageAssets.favouriteSvg,
-              title: 'Wishlist',
-              onTap: () {},
-            ),
-            verticalSpace(10),
-            Divider(
-              color: AppColors.antiFlashWhite,
-              thickness: 1.rSp,
-              height: 0,
-            ),
-            verticalSpace(10),
-            ProfileOptionItemTile(
-              imagePath: ImageAssets.locationSvg,
-              title: 'Saved Address',
-              onTap: () {},
-            ),
-            verticalSpace(10),
-            ProfileOptionItemTile(
-              imagePath: ImageAssets.paymentCardSvg,
-              title: 'Payments',
-              onTap: () {},
-            ),
-            verticalSpace(10),
-            Divider(
-              color: AppColors.antiFlashWhite,
-              thickness: 1.rSp,
-              height: 0,
-            ),
-            verticalSpace(10),
-            ProfileOptionItemTile(
-              imagePath: ImageAssets.shippingCarSvg,
-              title: 'Shipping and Payments',
-              onTap: () {},
-            ),
-            verticalSpace(10),
-            ProfileOptionItemTile(
-              imagePath: ImageAssets.refundSvg,
-              title: 'Refund Policy',
-              onTap: () {},
-            ),
-            verticalSpace(10),
-            Divider(
-              color: AppColors.antiFlashWhite,
-              thickness: 1.rSp,
-              height: 0,
-            ),
-            verticalSpace(131),
-            InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.rh),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.logout_rounded,
-                      size: 24.rSp,
-                      color: Colors.red,
-                    ),
-                    horizontalSpace(16),
-                    Expanded(
-                      child: Text(
-                        'Logout',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontSize: 16.rSp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.red,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
+    return WillPopScope(
+      onWillPop: () async {
+        Get.find<DashboardBottomNavController>().back();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        appBar: AppBar(
+          centerTitle: false,
+          title: const Text('Profile'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const SvgBuilder(
+                path: ImageAssets.notificationSvg,
               ),
             )
           ],
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(1.rSp),
+            child: Container(
+              color: AppColors.antiFlashWhite,
+              height: 1.rSp,
+            ),
+          ),
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(16.rSp),
+          child: Column(
+            children: [
+              ListTile(
+                onTap: () {
+                  Get.to(const ProfileDetailsScreen());
+                },
+                leading: CircleAvatar(
+                  radius: 24.rSp,
+                  backgroundImage: const NetworkImage(
+                    'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+                  ),
+                ),
+                title: Text(
+                  'John Smith',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontSize: 20.rSp,
+                      ),
+                ),
+                subtitle: Text(
+                  'john.smith@gmail.com',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.black,
+                      ),
+                ),
+                trailing: CircleAvatar(
+                  radius: 17.rSp,
+                  backgroundColor: AppColors.antiFlashWhite,
+                  child: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: AppColors.black,
+                    size: 18.rSp,
+                  ),
+                ),
+              ),
+              verticalSpace(10),
+              Divider(
+                color: AppColors.antiFlashWhite,
+                thickness: 1.rSp,
+                height: 0,
+              ),
+              verticalSpace(10),
+              ProfileOptionItemTile(
+                imagePath: ImageAssets.orderSvg,
+                title: 'My Order',
+                onTap: () {
+                  Get.to(const OrdersScreen());
+                },
+              ),
+              verticalSpace(10),
+              ProfileOptionItemTile(
+                imagePath: ImageAssets.favouriteSvg,
+                title: 'Wishlist',
+                onTap: () {},
+              ),
+              verticalSpace(10),
+              Divider(
+                color: AppColors.antiFlashWhite,
+                thickness: 1.rSp,
+                height: 0,
+              ),
+              verticalSpace(10),
+              ProfileOptionItemTile(
+                imagePath: ImageAssets.locationSvg,
+                title: 'Saved Address',
+                onTap: () {},
+              ),
+              verticalSpace(10),
+              ProfileOptionItemTile(
+                imagePath: ImageAssets.paymentCardSvg,
+                title: 'Payments',
+                onTap: () {},
+              ),
+              verticalSpace(10),
+              Divider(
+                color: AppColors.antiFlashWhite,
+                thickness: 1.rSp,
+                height: 0,
+              ),
+              verticalSpace(10),
+              ProfileOptionItemTile(
+                imagePath: ImageAssets.shippingCarSvg,
+                title: 'Shipping and Payments',
+                onTap: () {},
+              ),
+              verticalSpace(10),
+              ProfileOptionItemTile(
+                imagePath: ImageAssets.refundSvg,
+                title: 'Refund Policy',
+                onTap: () {},
+              ),
+              verticalSpace(10),
+              Divider(
+                color: AppColors.antiFlashWhite,
+                thickness: 1.rSp,
+                height: 0,
+              ),
+              verticalSpace(131),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.rh),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.logout_rounded,
+                        size: 24.rSp,
+                        color: Colors.red,
+                      ),
+                      horizontalSpace(16),
+                      Expanded(
+                        child: Text(
+                          'Logout',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                fontSize: 16.rSp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.red,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
