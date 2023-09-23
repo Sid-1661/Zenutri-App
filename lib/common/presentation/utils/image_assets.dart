@@ -19,4 +19,5 @@ class ImageAssets {
   static const String paymentCardSvg = 'assets/icons/payment-card.svg';
   static const String shippingCarSvg = 'assets/icons/shipping-car.svg';
   static const String refundSvg = 'assets/icons/refund.svg';
+  static const String lockSvg = 'assets/icons/lock.svg';
 }

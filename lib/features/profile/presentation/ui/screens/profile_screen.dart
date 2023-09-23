@@ -6,6 +6,7 @@ import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/orders/presentation/ui/screens/orders_screen.dart';
+import 'package:zenutri_app/features/profile/presentation/ui/screens/profile_details_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/widgets/profile_option_item_tile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -39,7 +40,9 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Get.to(const ProfileDetailsScreen());
+              },
               leading: CircleAvatar(
                 radius: 24.rSp,
                 backgroundImage: const NetworkImage(
