@@ -6,6 +6,7 @@ import 'package:zenutri_app/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/screens/change_password_screen.dart';
+import 'package:zenutri_app/features/profile/presentation/ui/screens/edit_profile_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/widgets/profile_option_item_tile.dart';
 
 class ProfileDetailsScreen extends StatelessWidget {
@@ -66,7 +67,9 @@ class ProfileDetailsScreen extends StatelessWidget {
               ProfileOptionItemTile(
                 imagePath: ImageAssets.profileSvg,
                 title: 'Edit Profile',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const EditProfileScreen());
+                },
               ),
               verticalSpace(10),
               ProfileOptionItemTile(
