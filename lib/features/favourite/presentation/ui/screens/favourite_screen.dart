@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/common/presentation/utils/spacing.dart';
-import 'package:zenutri_app/common/presentation/widgets/product_card.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/product_card.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 
 class FavouriteScreen extends StatelessWidget {

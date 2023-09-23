@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 
 class ProductReviewCard extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/verify_otp_screen.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_sign_up_text_button.dart';

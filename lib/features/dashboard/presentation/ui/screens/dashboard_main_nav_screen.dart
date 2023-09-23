@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/common/presentation/utils/image_assets.dart';
-import 'package:zenutri_app/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/carts/presentation/ui/screens/carts_screen.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/screens/home_screen.dart';
 import 'package:zenutri_app/features/favourite/presentation/ui/screens/favourite_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/screens/profile_screen.dart';
@@ -32,7 +32,7 @@ class _DashboardMainNavScreenState extends State<DashboardMainNavScreen> {
         decoration: const BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: AppColors.graniteGray,
+              color: AppColors.aluminium,
               blurRadius: 1,
               offset: Offset(0.5, 0.5),
             ),

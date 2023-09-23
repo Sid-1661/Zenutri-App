@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 
 @immutable

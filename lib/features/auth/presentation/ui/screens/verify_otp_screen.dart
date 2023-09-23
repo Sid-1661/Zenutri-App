@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:otp_timer_button/otp_timer_button.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/reset_new_password.dart';

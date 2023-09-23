@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
-import 'package:zenutri_app/common/presentation/widgets/custom_stepper.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/custom_stepper.dart';
 import 'package:zenutri_app/features/product/pesentation/ui/widgets/product_image_slider.dart';
 import 'package:zenutri_app/features/review/presentation/ui/widgets/product_review_card.dart';
 

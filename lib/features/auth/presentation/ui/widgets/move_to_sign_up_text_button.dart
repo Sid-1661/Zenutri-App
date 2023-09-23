@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/signup_screen.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 
 class MoveToSignUpTextButton extends StatelessWidget {
   const MoveToSignUpTextButton({

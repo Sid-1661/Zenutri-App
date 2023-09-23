@@ -4,7 +4,7 @@ import 'package:zenutri_app/application/themes/app_bar_themes.dart';
 import 'package:zenutri_app/application/themes/app_decorations.dart';
 import 'package:zenutri_app/application/themes/button_themes.dart';
 import 'package:zenutri_app/application/themes/text_themes.dart';
-import 'package:zenutri_app/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/splash_screen.dart';
 
