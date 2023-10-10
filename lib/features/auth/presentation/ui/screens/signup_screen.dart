@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:zenutri_app/features/auth/data/gql_queries/customer_qgl.dart';
+import 'package:zenutri_app/features/auth/data/models/customer_create_input.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
-import 'package:zenutri_app/features/auth/presentation/ui/screens/verify_otp_screen.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_login_text_button.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
 
@@ -166,17 +167,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
           verticalSpace(40),
           SizedBox(
             width: 100.w,
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState?.validate() ?? false) {
-                  Get.to(
-                    const VerifyOtpScreen(
-                      screenType: VerifyOtpScreenType.signUp,
-                    ),
+            child: Mutation(
+              options: MutationOptions(
+                document: gql(CustomerGql.createNewCustomer),
+                variables: _getVariables
+              ),
+              builder: (MultiSourceResult<dynamic> Function(
+                          Map<String, dynamic>,
+                          {Object? optimisticResult})
+                      runMutation,
+                  QueryResult<dynamic>? result) {
+                if (result?.isLoading ?? true) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
                 }
+                return ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      runMutation({});
+                    }
+                  },
+                  child: const Text('Sign up'),
+                );
               },
-              child: const Text('Create Account'),
             ),
           ),
           verticalSpace(24),
@@ -184,6 +198,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ],
       ),
     );
+  }
+  
+  
+  Map<String, dynamic> get _getVariables {
+    final CustomerCreateInput input = CustomerCreateInput(
+        firstName: _fullNameTEController.text.trim(),
+        lastName:  _fullNameTEController.text.trim(),
+        email: _emailTEController.text.trim(),
+        phone: _phoneNumberTEController.text.trim(),
+        // password: _passwordTEController.text.trim(),
+        acceptsMarketing: false,
+    );
+    return input.toJson();
   }
 
   @override
