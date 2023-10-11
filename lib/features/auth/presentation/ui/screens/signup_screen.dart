@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:zenutri_app/features/auth/data/gql_queries/customer_qgl.dart';
-import 'package:zenutri_app/features/auth/data/models/customer_create_input.dart';
-import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
+import 'package:get/get.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/auth/presentation/state_holders/sign_up_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_login_text_button.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
+import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
+import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/dashboard/presentation/ui/screens/dashboard_main_nav_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -19,7 +19,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool obscureConfirmPassword = true;
   bool obscurePassword = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _fullNameTEController = TextEditingController();
+  final TextEditingController _firstNameTEController = TextEditingController();
+  final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _phoneNumberTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
@@ -65,13 +66,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           verticalSpace(24),
           TextFormField(
-            controller: _fullNameTEController,
-            decoration: const InputDecoration(hintText: 'Full name'),
+            controller: _firstNameTEController,
+            decoration: const InputDecoration(hintText: 'First name'),
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             validator: (String? value) {
               if (value?.trim().isEmpty ?? true) {
-                return 'Enter your full name';
+                return 'Enter your first name';
+              }
+              return null;
+            },
+          ),
+          verticalSpace(24),
+          TextFormField(
+            controller: _lastNameTEController,
+            decoration: const InputDecoration(hintText: 'Last name'),
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            validator: (String? value) {
+              if (value?.trim().isEmpty ?? true) {
+                return 'Enter your last name';
               }
               return null;
             },
@@ -91,19 +105,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
               return null;
             },
           ),
-          verticalSpace(16),
-          TextFormField(
-            controller: _phoneNumberTEController,
-            decoration: const InputDecoration(hintText: 'Phone number'),
-            keyboardType: TextInputType.phone,
-            textInputAction: TextInputAction.next,
-            validator: (String? value) {
-              if (value?.trim().isEmpty ?? true) {
-                return 'Enter your phone number';
-              }
-              return null;
-            },
-          ),
+          // verticalSpace(16),
+          // TextFormField(
+          //   controller: _phoneNumberTEController,
+          //   decoration: const InputDecoration(hintText: 'Phone number'),
+          //   keyboardType: TextInputType.phone,
+          //   textInputAction: TextInputAction.next,
+          //   validator: (String? value) {
+          //     if (value?.trim().isEmpty ?? true) {
+          //       return 'Enter your phone number';
+          //     }
+          //     return null;
+          //   },
+          // ),
           verticalSpace(16),
           TextFormField(
             controller: _passwordTEController,
@@ -166,32 +180,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           verticalSpace(40),
           SizedBox(
-            width: 100.w,
-            child: Mutation(
-              options: MutationOptions(
-                document: gql(CustomerGql.createNewCustomer),
-                variables: _getVariables
-              ),
-              builder: (MultiSourceResult<dynamic> Function(
-                          Map<String, dynamic>,
-                          {Object? optimisticResult})
-                      runMutation,
-                  QueryResult<dynamic>? result) {
-                if (result?.isLoading ?? true) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+              width: 100.w,
+              child: GetBuilder<SignUpController>(
+                builder: (controller) {
+                  if (controller.inProgress) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.signUp(
+                          _firstNameTEController.text.trim(),
+                          _lastNameTEController.text.trim(),
+                          _emailTEController.text.trim(),
+                          _passwordTEController.text.trim(),
+                        ).then((value) {
+                          if (value) {
+                            Get.offAll(() => const DashboardMainNavScreen());
+                          } else {
+                              if (mounted) {
+                                Get.showSnackbar(
+                                  GetSnackBar(
+                                    title: 'Sign up failed',
+                                    message: controller.failure.message,
+                                    duration: const Duration(seconds: 3),
+                                  ),
+                                );
+                            }
+                          }
+                        });
+                      }
+                    },
+                    child: const Text('Sign up'),
                   );
                 }
-                return ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      runMutation({});
-                    }
-                  },
-                  child: const Text('Sign up'),
-                );
-              },
-            ),
+              ),
           ),
           verticalSpace(24),
           const MoveToLoginTextButton()
@@ -199,23 +224,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-  
-  
-  Map<String, dynamic> get _getVariables {
-    final CustomerCreateInput input = CustomerCreateInput(
-        firstName: _fullNameTEController.text.trim(),
-        lastName:  _fullNameTEController.text.trim(),
-        email: _emailTEController.text.trim(),
-        phone: _phoneNumberTEController.text.trim(),
-        // password: _passwordTEController.text.trim(),
-        acceptsMarketing: false,
-    );
-    return input.toJson();
-  }
 
   @override
   void dispose() {
-    _fullNameTEController.dispose();
+    _firstNameTEController.dispose();
     _emailTEController.dispose();
     _phoneNumberTEController.dispose();
     _passwordTEController.dispose();

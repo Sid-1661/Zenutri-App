@@ -21,7 +21,7 @@ class _ZenutriAppState extends State<ZenutriApp> {
   final HttpLink httpLink = HttpLink(
     "https://zenutri-vitamin.myshopify.com/api/2023-10/graphql.json",
     defaultHeaders: <String, String>{
-      'Authorization': 'Bearer ae8039b39e897fa4db96ea87c50cbe0d',
+      'X-Shopify-Storefront-Access-Token': 'ae8039b39e897fa4db96ea87c50cbe0d',
     },
   );
 
@@ -59,3 +59,5 @@ class _ZenutriAppState extends State<ZenutriApp> {
     );
   }
 }
+
+
