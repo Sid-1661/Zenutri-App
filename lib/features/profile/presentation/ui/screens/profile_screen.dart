@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screens/welcome_screen.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
@@ -141,7 +143,10 @@ class ProfileScreen extends StatelessWidget {
               ),
               verticalSpace(131),
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  await Get.find<AuthController>().logout();
+                  Get.offAll(() => const WelcomeScreen());
+                },
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.rh),
                   child: Row(

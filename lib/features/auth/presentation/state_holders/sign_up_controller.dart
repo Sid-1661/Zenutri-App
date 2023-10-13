@@ -11,12 +11,12 @@ class SignUpController extends GetxController {
   Failure get failure => _failure;
 
   Future<bool> signUp(
-      String firstName, String lastName, String email, String password) async {
+      String firstName, String lastName, String email, String password, String phone) async {
     late bool status;
     _inProgress = true;
     update();
     await Get.find<AuthRepository>()
-        .createCustomer(firstName, lastName, email, password)
+        .createCustomer(firstName, lastName, email, password, phone)
         .then((result) {
       result.fold((l) {
         _failure = l;

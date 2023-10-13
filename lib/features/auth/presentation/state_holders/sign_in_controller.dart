@@ -18,7 +18,7 @@ class SignInController extends GetxController {
         .login(email, password)
         .then((result) {
       result.fold((l) {
-        _failure = l;
+        _failure = Failure(message: 'Please check your email or password');
         status = false;
       }, (r) {
         status = true;

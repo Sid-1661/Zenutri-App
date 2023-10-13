@@ -12,6 +12,7 @@ class AuthRepository {
     String lastName,
     String email,
     String password,
+    String phone,
   ) async {
     try {
       final ShopifyUser user =
@@ -20,6 +21,7 @@ class AuthRepository {
         lastName: lastName,
         email: email,
         password: password,
+        phone: phone,
       );
       return Right(user);
     } on OperationException catch (e) {

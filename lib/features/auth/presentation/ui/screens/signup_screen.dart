@@ -105,19 +105,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
               return null;
             },
           ),
-          // verticalSpace(16),
-          // TextFormField(
-          //   controller: _phoneNumberTEController,
-          //   decoration: const InputDecoration(hintText: 'Phone number'),
-          //   keyboardType: TextInputType.phone,
-          //   textInputAction: TextInputAction.next,
-          //   validator: (String? value) {
-          //     if (value?.trim().isEmpty ?? true) {
-          //       return 'Enter your phone number';
-          //     }
-          //     return null;
-          //   },
-          // ),
+          verticalSpace(16),
+          TextFormField(
+            controller: _phoneNumberTEController,
+            decoration: const InputDecoration(hintText: 'Phone number'),
+            keyboardType: TextInputType.phone,
+            textInputAction: TextInputAction.next,
+            validator: (String? value) {
+              if (value?.trim().isEmpty ?? true) {
+                return 'Enter your phone number';
+              }
+              return null;
+            },
+          ),
           verticalSpace(16),
           TextFormField(
             controller: _passwordTEController,
@@ -196,6 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           _lastNameTEController.text.trim(),
                           _emailTEController.text.trim(),
                           _passwordTEController.text.trim(),
+                          _phoneNumberTEController.text.trim(),
                         ).then((value) {
                           if (value) {
                             Get.offAll(() => const DashboardMainNavScreen());
