@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/sign_in_controller.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screens/forgot_password_email_screen.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
-import 'package:zenutri_app/features/auth/presentation/ui/screens/verify_otp_screen.dart';
-import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_sign_up_text_button.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/widgets/move'
+    '_to_sign_up_text_button.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/center_circular_progress_indicator.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/get_toast_message.dart';
@@ -103,9 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextButton(
                 onPressed: () {
                   Get.to(
-                    const VerifyOtpScreen(
-                        screenType: VerifyOtpScreenType.resetPassword,
-                    ),
+                    const ForgotPasswordEmailScreen(),
                   );
                 },
                 child: const Text('Forgot Password?'),
