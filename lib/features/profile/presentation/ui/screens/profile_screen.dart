@@ -53,18 +53,21 @@ class ProfileScreen extends StatelessWidget {
                 },
                 leading: CircleAvatar(
                   radius: 24.rSp,
-                  backgroundImage: const NetworkImage(
-                    'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+                  child: Text(
+                    (Get.find<AuthController>().shopifyUser?.firstName?[0] ?? 'U').toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 24.rSp
+                    ),
                   ),
                 ),
                 title: Text(
-                  'John Smith',
+                  Get.find<AuthController>().userFullName,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontSize: 20.rSp,
                       ),
                 ),
                 subtitle: Text(
-                  'john.smith@gmail.com',
+                  Get.find<AuthController>().shopifyUser?.email ?? '',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.black,
                       ),

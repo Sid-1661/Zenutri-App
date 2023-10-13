@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:zenutri_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:zenutri_app/features/auth/domain/entities/failure.dart';
+import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
 
 class SignInController extends GetxController {
   bool _inProgress = false;
@@ -21,6 +22,7 @@ class SignInController extends GetxController {
         _failure = Failure(message: 'Please check your email or password');
         status = false;
       }, (r) {
+        Get.find<AuthController>().shopifyUser = r;
         status = true;
       });
     });

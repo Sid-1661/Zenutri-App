@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zenutri_app/core/extensions/size_extension.dart';
 
 TextTheme zenutriTextThemes = const TextTheme(
   bodyMedium: TextStyle(

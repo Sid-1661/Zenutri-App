@@ -42,4 +42,8 @@ class AuthController {
   Future<void> logout() async {
     await shopifyAuth.signOutCurrentUser();
   }
+
+  String get userFullName {
+    return '${shopifyUser?.firstName ?? ''} ${shopifyUser?.lastName ?? ''}';
+  }
 }
