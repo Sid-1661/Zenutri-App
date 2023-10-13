@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 
 class ZenutriButtonThemes {
@@ -9,16 +8,16 @@ class ZenutriButtonThemes {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50),
       ),
-      textStyle: TextStyle(
-        fontSize: 16.rSp,
+      textStyle: const TextStyle(
+        fontSize: 16,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
         letterSpacing: 0.5,
         fontFamily: 'Outfit',
       ),
-      padding: EdgeInsets.symmetric(
-        vertical: 16.rh,
-        horizontal: 32.rw,
+      padding: const EdgeInsets.symmetric(
+        vertical: 16,
+        horizontal: 32,
       ),
     ),
   );
@@ -26,8 +25,8 @@ class ZenutriButtonThemes {
   /// Text button theme data
   static TextButtonThemeData textButtonTheme = TextButtonThemeData(
     style: TextButton.styleFrom(
-      textStyle: TextStyle(
-        fontSize: 17.rSp,
+      textStyle: const TextStyle(
+        fontSize: 17,
         color: AppColors.white,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.5,

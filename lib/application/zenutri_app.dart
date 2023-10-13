@@ -34,9 +34,6 @@ class _ZenutriAppState extends State<ZenutriApp> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    ScreenSizes.screenWidth = size.width;
-    ScreenSizes.screenHeight = size.height;
     return GraphQLProvider(
       client: client,
       child: GetMaterialApp(
