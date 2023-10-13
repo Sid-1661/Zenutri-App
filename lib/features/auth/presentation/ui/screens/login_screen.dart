@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zenutri_app/core/utils/validators.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/sign_in_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/forgot_password_email_screen.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
@@ -76,6 +77,14 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: const InputDecoration(hintText: 'Email'),
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
+            validator: (String? value) {
+              if (value?.trim().isEmpty ?? true) {
+                return 'Enter your valid email here';
+              } else if (!AppValidator.emailValidationRegex.hasMatch(value ?? '')) {
+                return 'Please enter a valid email';
+              }
+              return null;
+            },
           ),
           verticalSpace(16),
           TextFormField(
@@ -83,6 +92,14 @@ class _LoginScreenState extends State<LoginScreen> {
             obscureText: obscurePassword,
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.done,
+            validator: (String? value) {
+              if (value?.trim().isEmpty ?? true) {
+                return 'Enter your password';
+              } else if ((value?.length ?? 0) < 6) {
+                return 'Password should be more that 6 letters';
+              }
+              return null;
+            },
             decoration: InputDecoration(
               hintText: 'Password',
               suffixIcon: IconButton(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/core/utils/validators.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/sign_up_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_login_text_button.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
@@ -25,8 +26,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _phoneNumberTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final TextEditingController _confirmTEController = TextEditingController();
-  final RegExp emailValidationRegex = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             validator: (String? value) {
               if (value?.trim().isEmpty ?? true) {
                 return 'Enter your valid email here';
-              } else if (!emailValidationRegex.hasMatch(value ?? '')) {
+              } else if (!AppValidator.emailValidationRegex.hasMatch(value ?? '')) {
                 return 'Please enter a valid email';
               }
               return null;
