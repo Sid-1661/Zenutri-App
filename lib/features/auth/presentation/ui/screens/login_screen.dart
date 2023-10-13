@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/auth/presentation/state_holders/sign_in_controller.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/verify_otp_screen.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/move_to_sign_up_text_button.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/widgets/zenutri_logo_horizontal.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/center_circular_progress_indicator.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/get_toast_message.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/screens/dashboard_main_nav_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,6 +19,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailTEController = TextEditingController();
+  final TextEditingController _passwordTEController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool obscurePassword = true;
 
   @override
@@ -44,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
   /// main form body
   Form get mainFormBody {
     return Form(
+      key: _formKey,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,12 +71,14 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           verticalSpace(24),
           TextFormField(
-            decoration: const InputDecoration(hintText: 'Phone number'),
-            keyboardType: TextInputType.phone,
+            controller: _emailTEController,
+            decoration: const InputDecoration(hintText: 'Email'),
+            keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
           ),
           verticalSpace(16),
           TextFormField(
+            controller: _passwordTEController,
             obscureText: obscurePassword,
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.done,
@@ -106,12 +115,29 @@ class _LoginScreenState extends State<LoginScreen> {
           const Spacer(),
           SizedBox(
             width: 100.w,
-            child: ElevatedButton(
-              onPressed: () {
-                Get.offAll(const DashboardMainNavScreen());
-              },
-              child: const Text('Login'),
-            ),
+            child: GetBuilder<SignInController>(
+              builder: (controller) {
+                if (controller.inProgress) {
+                  return const CenterCircularProgressLoader();
+                }
+                return ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      controller.signIn(
+                        _emailTEController.text.trim(),
+                        _passwordTEController.text.trim(),
+                      ).then((value) {
+                        if (value) {
+                          Get.offAll(() => const DashboardMainNavScreen(),);
+                        } else {
+                          showGetSnackMessage('Login failed', controller.failure.message);
+                        }
+                      });
+                    }
+                  },
+                  child: const Text('Login'),
+              );
+            }),
           ),
           verticalSpace(24),
           const MoveToSignUpTextButton()
@@ -119,4 +145,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+
 }

@@ -669,10 +669,10 @@ packages:
     dependency: "direct main"
     description:
       name: shopify_flutter
-      sha256: c753634dc1575fddb8c01b92b3aba1ac823df0d4eb9c6aa4dfcfc29662972f47
+      sha256: bde2fff402f40c691757f8386ea987aba35068a74575e51ab73754396da4e90f
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.4"
   sky_engine:
     dependency: transitive
     description: flutter

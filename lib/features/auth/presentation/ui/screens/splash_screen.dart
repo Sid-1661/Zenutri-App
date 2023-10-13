@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
 import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/welcome_screen.dart';
+import 'package:zenutri_app/features/dashboard/presentation/ui/screens/dashboard_main_nav_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,13 +19,18 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      goToWelcomeScreen();
+      checkIfUserLoggedIn();
     });
   }
 
-  void goToWelcomeScreen() {
-    Future.delayed(const Duration(seconds: 2)).then((_) {
-      Get.off(const WelcomeScreen());
+  void checkIfUserLoggedIn() {
+    Future.delayed(const Duration(seconds: 2)).then((_) async {
+      final bool result = await Get.find<AuthController>().checkIfLoggedIn();
+      if (result) {
+        Get.off(() => const DashboardMainNavScreen());
+      } else {
+        Get.off(() => const WelcomeScreen());
+      }
     });
   }
 
