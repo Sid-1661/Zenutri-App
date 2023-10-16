@@ -5,6 +5,7 @@ import 'package:zenutri_app/features/auth/presentation/ui/screens/welcome_screen
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/profile_avatar.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
@@ -51,15 +52,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: () {
                   Get.to(const ProfileDetailsScreen());
                 },
-                leading: CircleAvatar(
-                  radius: 24.rSp,
-                  child: Text(
-                    (Get.find<AuthController>().shopifyUser?.firstName?[0] ?? 'U').toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 24.rSp
-                    ),
-                  ),
-                ),
+                leading: const ProfileAvatar(),
                 title: Text(
                   Get.find<AuthController>().userFullName,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/profile_avatar.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/screens/change_password_screen.dart';
@@ -44,15 +46,12 @@ class ProfileDetailsScreen extends StatelessWidget {
           child: Column(
             children: [
               verticalSpace(32),
-              CircleAvatar(
-                radius: 42.rSp,
-                backgroundImage: const NetworkImage(
-                  'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-                ),
+              ProfileAvatar(
+                radius: 32.rSp,
               ),
               verticalSpace(12),
               Text(
-                'John Smith',
+                Get.find<AuthController>().userFullName,
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge
@@ -60,7 +59,7 @@ class ProfileDetailsScreen extends StatelessWidget {
               ),
               verticalSpace(3),
               Text(
-                'john.smith@gmail.com',
+                Get.find<AuthController>().shopifyUser?.email ?? '',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               verticalSpace(32),
