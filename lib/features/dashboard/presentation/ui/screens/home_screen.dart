@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/center_circular_progress_indicator.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/product_card.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/dashboard/presentation/controllers/home_products_controller.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/widgets/home/home_banner_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,50 +24,68 @@ class _HomeScreenState extends State<HomeScreen> {
           'Home',
         ),
       ),
-      body: SingleChildScrollView(
-        primary: true,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.rw),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              verticalSpace(16),
-              const TextField(
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search), hintText: 'Search'),
-              ),
-              verticalSpace(32),
-              const HomeBannerWidget(),
-              verticalSpace(32),
-              Text(
-                'Our Products',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.copyWith(fontSize: 22.rSp),
-              ),
-              verticalSpace(16),
-              productGridView
-            ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          Get.find<HomeProductController>().getBundleProducts();
+        },
+        child: SingleChildScrollView(
+          primary: true,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.rw),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                verticalSpace(16),
+                const TextField(
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.search), hintText: 'Search'),
+                ),
+                verticalSpace(32),
+                const HomeBannerWidget(),
+                verticalSpace(32),
+                Text(
+                  'Our Products',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontSize: 22.rSp),
+                ),
+                verticalSpace(16),
+                productGridView
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  GridView get productGridView {
-    return GridView.builder(
-        primary: false,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 10,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.75.rSp,
-            crossAxisSpacing: 8.rSp,
-            mainAxisSpacing: 8.rSp),
-        itemBuilder: (context, index) {
-          return const ProductCard();
-        });
+  Widget get productGridView {
+    return GetBuilder<HomeProductController>(
+      builder: (homeProductController) {
+        if (homeProductController.inProgress) {
+          return SizedBox(
+            height: 100,
+            width: 100.w,
+            child: const CenterCircularProgressLoader(),
+          );
+        }
+        return GridView.builder(
+            primary: false,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: homeProductController.productList.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.75.rSp,
+                crossAxisSpacing: 8.rSp,
+                mainAxisSpacing: 8.rSp),
+            itemBuilder: (context, index) {
+              return ProductCard(
+                product: homeProductController.productList[index],
+              );
+            });
+      }
+    );
   }
 }

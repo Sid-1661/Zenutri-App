@@ -4,8 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:shopify_flutter/models/models.dart';
 import 'package:shopify_flutter/shopify/shopify.dart';
-import 'package:zenutri_app/features/auth/domain/entities/failure.dart';
-import 'package:zenutri_app/features/auth/domain/entities/success.dart';
+import 'package:zenutri_app/features/common/domain/entities/failure.dart';
+import 'package:zenutri_app/features/common/domain/entities/success.dart';
 
 class AuthRepository {
   Future<Either<Failure, ShopifyUser>> createCustomer(

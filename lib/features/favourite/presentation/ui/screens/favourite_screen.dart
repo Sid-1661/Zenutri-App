@@ -84,7 +84,7 @@ class FavouriteScreen extends StatelessWidget {
           crossAxisSpacing: 8.rSp,
           mainAxisSpacing: 8.rSp),
       itemBuilder: (context, index) {
-        return const ProductCard();
+        // return const ProductCard();
       },
     );
   }

@@ -1,4 +1,3 @@
 class AppConfig {
-  static String shopName = 'storefront';
-  static String baseUrl = 'https://$shopName.myshopify.com/api';
+  static const String bundleCollectionId = 'gid://shopify/Collection/456852930881';
 }

@@ -6,6 +6,7 @@ import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
+import 'package:zenutri_app/features/dashboard/presentation/controllers/home_products_controller.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/screens/home_screen.dart';
 import 'package:zenutri_app/features/favourite/presentation/ui/screens/favourite_screen.dart';
 import 'package:zenutri_app/features/profile/presentation/ui/screens/profile_screen.dart';
@@ -24,6 +25,14 @@ class _DashboardMainNavScreenState extends State<DashboardMainNavScreen> {
     CartsScreen(),
     ProfileScreen(),
   ];
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<HomeProductController>().getBundleProducts();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

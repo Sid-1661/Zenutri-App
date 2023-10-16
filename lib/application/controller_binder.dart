@@ -5,6 +5,8 @@ import 'package:zenutri_app/features/auth/presentation/state_holders/forgot_pass
 import 'package:zenutri_app/features/auth/presentation/state_holders/sign_in_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/sign_up_controller.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
+import 'package:zenutri_app/features/dashboard/presentation/controllers/home_products_controller.dart';
+import 'package:zenutri_app/features/product/data/repositories/product_repository.dart';
 
 class ControllerBinder extends Bindings {
   @override
@@ -15,5 +17,7 @@ class ControllerBinder extends Bindings {
     Get.put(SignInController());
     Get.put(AuthController());
     Get.put(ForgotPasswordController());
+    Get.put(ProductRepository());
+    Get.put(HomeProductController());
   }
 }

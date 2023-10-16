@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:zenutri_app/features/auth/data/repositories/auth_repository.dart';
-import 'package:zenutri_app/features/auth/domain/entities/failure.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
+import 'package:zenutri_app/features/common/domain/entities/failure.dart';
 
 class SignUpController extends GetxController {
   bool _inProgress = false;
