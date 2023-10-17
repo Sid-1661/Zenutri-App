@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(const ProductDetailsScreen());
+        Get.to(ProductDetailsScreen(product: product,));
       },
       borderRadius: BorderRadius.circular(16.rSp),
       child: Card(
@@ -69,15 +69,17 @@ class ProductCard extends StatelessWidget {
                   ),
                   verticalSpace(4),
                   Text(
-                    'For Her Bundle',
+                    product.title,
+                    maxLines: 1,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                           color: AppColors.black,
+                      overflow: TextOverflow.ellipsis,
                         ),
                   ),
                   verticalSpace(4),
                   Text(
-                    '\$95.10 AUD',
+                    '\$${product.price} EAR',
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall

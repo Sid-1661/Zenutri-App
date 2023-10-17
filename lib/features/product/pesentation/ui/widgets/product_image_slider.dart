@@ -1,13 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:shopify_flutter/models/src/product/shopify_image/shopify_image.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
-import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 
 class ProductImageSlider extends StatelessWidget {
   ProductImageSlider({
     super.key,
+    required this.images,
   });
+
+  List<ShopifyImage> images;
 
   final ValueNotifier<int> _selectedImageIndex = ValueNotifier(0);
 
@@ -26,10 +30,18 @@ class ProductImageSlider extends StatelessWidget {
                 onPageChanged: (pageNo, _) {
                   _selectedImageIndex.value = pageNo;
                 }),
-            items: [1, 2, 3, 4, 5].map((i) {
+            items: images.map((i) {
               return Builder(
                 builder: (BuildContext context) {
-                  return Image.asset(ImageAssets.capsuleBgPng);
+                  return CachedNetworkImage(
+                    imageUrl: i.originalSrc,
+                    fit: BoxFit.scaleDown,
+                    errorWidget: (context, _, __) {
+                      return const Center(
+                        child: Icon(Icons.error_outline),
+                      );
+                    },
+                  );
                 },
               );
             }).toList(),
@@ -43,7 +55,7 @@ class ProductImageSlider extends StatelessWidget {
             valueListenable: _selectedImageIndex,
             builder: (context, value, _) {
               List<Widget> list = [];
-              for (int i = 0; i < 5; i++) {
+              for (int i = 0; i < images.length; i++) {
                 list.add(Container(
                   width: 10,
                   height: 10,

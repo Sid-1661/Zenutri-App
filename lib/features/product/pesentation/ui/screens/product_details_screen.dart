@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shopify_flutter/shopify_flutter.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
@@ -8,7 +10,9 @@ import 'package:zenutri_app/features/product/pesentation/ui/widgets/product_imag
 import 'package:zenutri_app/features/review/presentation/ui/widgets/product_review_card.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key, required this.product});
+
+  final Product product;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsState();
@@ -29,7 +33,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
                   children: [
                     Stack(
                       children: [
-                        ProductImageSlider(),
+                        ProductImageSlider(images: widget.product.images,),
                         productDetailsAppBar,
                       ],
                     ),
@@ -85,7 +89,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
         children: [
           verticalSpace(32),
           Text(
-            'For Her Bundle',
+            widget.product.title,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge
@@ -96,7 +100,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '\$95.10 AUD',
+                '\$${widget.product.price} AUD',
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge
@@ -139,10 +143,10 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
             collapsedShape: Border(
                 bottom: BorderSide(color: AppColors.aluminium, width: 0.5.rSp)),
             iconColor: AppColors.aluminium,
-            children: const [
-              Text(
-                  '''Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            ''')
+            children: [
+              Html(
+                data: widget.product.descriptionHtml,
+              ),
             ],
           ),
           ExpansionTile(

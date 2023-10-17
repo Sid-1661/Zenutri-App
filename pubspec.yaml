@@ -27,6 +27,8 @@ dependencies:
   equatable: ^2.0.5
   graphql_flutter: ^5.1.2
   shopify_flutter: ^1.1.4
+  cached_network_image: ^3.3.0
+  flutter_html: ^3.0.0-beta.2
 
 dev_dependencies:
   flutter_test:
