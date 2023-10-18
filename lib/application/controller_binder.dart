@@ -7,6 +7,9 @@ import 'package:zenutri_app/features/auth/presentation/state_holders/sign_up_con
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/home_products_controller.dart';
 import 'package:zenutri_app/features/product/data/repositories/product_repository.dart';
+import 'package:zenutri_app/features/profile/data/repositories/profile_repository.dart';
+import 'package:zenutri_app/features/profile/presentation/state_holders/change_password_controller.dart';
+import 'package:zenutri_app/features/profile/presentation/state_holders/update_profile_controller.dart';
 
 class ControllerBinder extends Bindings {
   @override
@@ -19,5 +22,8 @@ class ControllerBinder extends Bindings {
     Get.put(ForgotPasswordController());
     Get.put(ProductRepository());
     Get.put(HomeProductController());
+    Get.put(ProfileRepository());
+    Get.put(UpdateProfileController());
+    Get.put(ChangePasswordController());
   }
 }

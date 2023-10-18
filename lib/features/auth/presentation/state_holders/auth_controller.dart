@@ -43,6 +43,10 @@ class AuthController {
     await shopifyAuth.signOutCurrentUser();
   }
 
+  Future<void> refreshUserInfo() async {
+    shopifyUser = await shopifyAuth.currentUser();
+  }
+
   String get userFullName {
     return '${shopifyUser?.firstName ?? ''} ${shopifyUser?.lastName ?? ''}';
   }
