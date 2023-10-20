@@ -2,12 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
-import 'package:zenutri_app/features/common/presentation/widgets/product_card.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
+import 'package:zenutri_app/features/favourite/presentation/state_holders/favourite_controller.dart';
 
-class FavouriteScreen extends StatelessWidget {
+class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
+
+  @override
+  State<FavouriteScreen> createState() => _FavouriteScreenState();
+}
+
+class _FavouriteScreenState extends State<FavouriteScreen> {
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<FavouriteController>().getAllFavourites();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,24 +36,24 @@ class FavouriteScreen extends StatelessWidget {
           centerTitle: false,
           title: const Text('Favourite'),
           actions: [
-            TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.add,
-                      color: AppColors.primaryColor,
-                    ),
-                    horizontalSpace(8),
-                    Text(
-                      'Add',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.rSp),
-                    ),
-                  ],
-                ))
+            // TextButton(
+            //     onPressed: () {},
+            //     child: Row(
+            //       children: [
+            //         const Icon(
+            //           Icons.add,
+            //           color: AppColors.primaryColor,
+            //         ),
+            //         horizontalSpace(8),
+            //         Text(
+            //           'Add',
+            //           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            //               color: AppColors.primaryColor,
+            //               fontWeight: FontWeight.w600,
+            //               fontSize: 16.rSp),
+            //         ),
+            //       ],
+            //     ))
           ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.rSp),
