@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:shopify_flutter/shopify_flutter.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/custom_stepper.dart';
+import 'package:zenutri_app/features/favourite/data/models/favourite.dart';
+import 'package:zenutri_app/features/favourite/presentation/state_holders/favourite_controller.dart';
 import 'package:zenutri_app/features/product/pesentation/ui/widgets/product_image_slider.dart';
 import 'package:zenutri_app/features/review/presentation/ui/widgets/product_review_card.dart';
 
@@ -19,6 +22,22 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetailsScreen> {
+  bool isFavourite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      checkIfFavouriteProduct();
+    });
+  }
+
+  void checkIfFavouriteProduct() async {
+    isFavourite = await Get.find<FavouriteController>().checkIfFavourite(widget.product.id);
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -207,10 +226,28 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
         CircleAvatar(
           backgroundColor: Colors.white,
           child: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.favorite_border,
-              color: AppColors.shadowGray,
+            onPressed: () {
+              if (!isFavourite) {
+                Get.find<FavouriteController>().addToFavourite(
+                  Favourite(
+                    widget.product.title,
+                    widget.product.image,
+                    widget.product.id,
+                    widget.product.price,
+                  ),
+                );
+                isFavourite = true;
+              } else {
+                Get.find<FavouriteController>().removeFromFavourite(widget.product.id);
+                isFavourite = false;
+              }
+              if (mounted) {
+                setState(() {});
+              }
+            },
+            icon: Icon(
+              isFavourite ? Icons.favorite : Icons.favorite_border,
+              color: isFavourite ? Colors.red : AppColors.shadowGray,
             ),
           ),
         ),

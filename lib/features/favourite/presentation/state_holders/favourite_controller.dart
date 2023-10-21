@@ -21,4 +21,16 @@ class FavouriteController extends GetxController {
     _inProgress = false;
     update();
   }
+
+  Future<bool> addToFavourite(Favourite favourite) {
+    return Get.find<FavouriteRepository>().addToFavourites(favourite);
+  }
+
+  Future<bool> removeFromFavourite(String productId) {
+    return Get.find<FavouriteRepository>().removeFromFavourite(productId);
+  }
+
+  Future<bool> checkIfFavourite(String productId) {
+    return Get.find<FavouriteRepository>().checkIfFavourite(productId);
+  }
 }

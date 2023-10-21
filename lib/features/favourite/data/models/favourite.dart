@@ -1,7 +1,7 @@
 class Favourite {
   final String title, image, productId;
   final double price;
-  final int id;
+  int? id;
   int quantity = 1;
 
   Favourite(
@@ -9,8 +9,9 @@ class Favourite {
     this.image,
     this.productId,
     this.price,
+      {
     this.id,
-  );
+  });
 
   factory Favourite.fromJson(Map<String, dynamic> json) {
     return Favourite(
@@ -18,7 +19,7 @@ class Favourite {
       json['image'],
       json['productId'],
       json['price'],
-      json['id'],
+      id: json['id'],
     );
   }
 
@@ -28,7 +29,6 @@ class Favourite {
       'image': image,
       'productId': productId,
       'price': price,
-      'id': id,
     };
   }
 }

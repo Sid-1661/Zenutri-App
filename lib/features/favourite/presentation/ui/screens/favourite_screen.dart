@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/center_circular_progress_indicator.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/product_card.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
+import 'package:zenutri_app/features/favourite/data/models/favourite.dart';
 import 'package:zenutri_app/features/favourite/presentation/state_holders/favourite_controller.dart';
 
 class FavouriteScreen extends StatefulWidget {
@@ -63,42 +66,49 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(16.rSp),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpace(8),
-                Text(
-                  '3 Items',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: 22.rSp
-                  ),
+        body: GetBuilder<FavouriteController>(
+          builder: (controller) {
+            if (controller.inProgress) {
+              return const CenterCircularProgressLoader();
+            }
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(16.rSp),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpace(8),
+                    Text(
+                      '${controller.favouriteList.length} Items',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontSize: 22.rSp
+                      ),
+                    ),
+                    verticalSpace(16),
+                    productGridView(controller.favouriteList),
+                  ],
                 ),
-                verticalSpace(16),
-                productGridView,
-              ],
-            ),
-          ),
+              ),
+            );
+          }
         ),
       ),
     );
   }
 
-  GridView get productGridView {
+  GridView productGridView(List<Favourite> favouriteList) {
     return GridView.builder(
       primary: false,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 3,
+      itemCount: favouriteList.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.75.rSp,
           crossAxisSpacing: 8.rSp,
           mainAxisSpacing: 8.rSp),
       itemBuilder: (context, index) {
-        // return const ProductCard();
+        // return const ProductCard(product: );
       },
     );
   }

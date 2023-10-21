@@ -11,13 +11,13 @@ class FavouriteRepository {
     return id != 0 ;
   }
 
-  Future<bool> removeFromFavourite(int id) async {
+  Future<bool> removeFromFavourite(String id) async {
     final Database database = await DBProvider.db.database;
-    int result = await database.delete(CartsTableUtils.tableName, where: '${CartsTableUtils.columnId} = ?', whereArgs: [id]);
+    int result = await database.delete(CartsTableUtils.tableName, where: '${CartsTableUtils.columnProductId} = ?', whereArgs: [id]);
     return result != 0;
   }
 
-  Future<bool> checkIfFavourite(int productId) async {
+  Future<bool> checkIfFavourite(String productId) async {
     final Database database = await DBProvider.db.database;
     final result = await database.query(CartsTableUtils.tableName, where: '${CartsTableUtils.columnProductId} = ?', whereArgs: [productId]);
     return result.isNotEmpty;
