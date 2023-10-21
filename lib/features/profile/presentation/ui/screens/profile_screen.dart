@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopify_flutter/models/src/address_autocomplete/address_details/address_details.dart';
+import 'package:zenutri_app/features/address_list/pesentation/ui/screens/address_list_screen.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/welcome_screen.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
@@ -105,7 +107,9 @@ class ProfileScreen extends StatelessWidget {
               ProfileOptionItemTile(
                 imagePath: ImageAssets.locationSvg,
                 title: 'Saved Address',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const AddressListScreen());
+                },
               ),
               verticalSpace(10),
               ProfileOptionItemTile(

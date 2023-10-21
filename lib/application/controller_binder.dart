@@ -15,6 +15,8 @@ import 'package:zenutri_app/features/profile/data/repositories/profile_repositor
 import 'package:zenutri_app/features/profile/presentation/state_holders/change_password_controller.dart';
 import 'package:zenutri_app/features/profile/presentation/state_holders/update_profile_controller.dart';
 
+import '../features/address_list/pesentation/state_holders/address_list_controller.dart';
+
 class ControllerBinder extends Bindings {
   @override
   void dependencies() {
@@ -33,5 +35,6 @@ class ControllerBinder extends Bindings {
     Get.put(CartController());
     Get.put(FavouriteRepository());
     Get.put(FavouriteController());
+    Get.put(AddressListController());
   }
 }
