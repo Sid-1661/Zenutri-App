@@ -226,7 +226,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
         CircleAvatar(
           backgroundColor: Colors.white,
           child: IconButton(
-            onPressed: () {
+            onPressed: () async {
               if (!isFavourite) {
                 Get.find<FavouriteController>().addToFavourite(
                   Favourite(
@@ -238,7 +238,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
                 );
                 isFavourite = true;
               } else {
-                Get.find<FavouriteController>().removeFromFavourite(widget.product.id);
+                await Get.find<FavouriteController>().removeFromFavourite(widget.product.id);
                 isFavourite = false;
               }
               if (mounted) {

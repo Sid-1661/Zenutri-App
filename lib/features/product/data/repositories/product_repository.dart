@@ -37,4 +37,20 @@ class ProductRepository {
       return Left(Failure());
     }
   }
+
+  Future<Either<Failure, List<Product>>> getProductListByIds(List<String> ids) async {
+    try {
+      final ShopifyStore shopifyStore = ShopifyStore.instance;
+      final List<Product> productList = await shopifyStore
+          .getProductsByIds(ids) ?? [];
+      return Right(productList);
+    } on OperationException catch (e) {
+      log(e.toString());
+      final String message = e.graphqlErrors.first.message;
+      return Left(Failure(message: message));
+    } catch (e) {
+      log(e.toString());
+      return Left(Failure());
+    }
+  }
 }

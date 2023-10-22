@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/carts/presentation/state_holders/cart_controller.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
-import 'package:zenutri_app/features/carts/presentation/ui/widgets/cart_item_list_tile.dart';
 import 'package:zenutri_app/features/checkout/presentation/ui/screens/check_out_screen.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/center_circular_progress_indicator.dart';
+import 'package:zenutri_app/features/common/presentation/widgets/product_card.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
 
 class CartsScreen extends StatefulWidget {
@@ -35,14 +37,21 @@ class _CartsScreenState extends State<CartsScreen> {
           child: Column(
             children: [
               Expanded(
-                child: ListView.separated(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return const CartItemListTile();
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return verticalSpace(24);
-                  },
+                child: GetBuilder<CartController>(
+                  builder: (controller) {
+                    if (controller.inProgress) {
+                      return const CenterCircularProgressLoader();
+                    }
+                    return ListView.separated(
+                      itemCount: controller.cartProductList.length,
+                      itemBuilder: (context, index) {
+                        return ProductCard(product: controller.cartProductList[index]);
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return verticalSpace(24);
+                      },
+                    );
+                  }
                 ),
               ),
               Padding(
