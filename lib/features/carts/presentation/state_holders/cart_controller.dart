@@ -30,4 +30,14 @@ class CartController extends GetxController {
     _inProgress = false;
     update();
   }
+
+  Future<void> addToCart(Cart cart) async {
+    await Get.find<CartRepository>()
+        .addToCart(cart);
+  }
+
+  Future<void> removeFromCart(int productId) async {
+    await Get.find<CartRepository>()
+        .removeFromCart(productId);
+  }
 }

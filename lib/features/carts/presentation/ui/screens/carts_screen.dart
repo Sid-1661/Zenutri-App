@@ -16,6 +16,13 @@ class CartsScreen extends StatefulWidget {
 }
 
 class _CartsScreenState extends State<CartsScreen> {
+
+  @override
+  void initState() {
+    Get.find<CartController>().getAllCarts();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

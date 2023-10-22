@@ -1,7 +1,7 @@
 class Cart {
   final String title, image, productId;
   final double price;
-  final int id;
+  final int? id;
   int quantity = 1;
 
   Cart(
@@ -9,7 +9,7 @@ class Cart {
     this.image,
     this.productId,
     this.price,
-    this.id,
+      [this.id,]
   );
 
   factory Cart.fromJson(Map<String, dynamic> json) {
