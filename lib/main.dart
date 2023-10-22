@@ -14,6 +14,7 @@ Future<void> setUp() async {
   await DBProvider.db.initDB();
   ShopifyConfig.setConfig(
     storefrontAccessToken: 'ae8039b39e897fa4db96ea87c50cbe0d',
+    adminAccessToken: "adminAccessToken",
     storeUrl: 'zenutri-vitamin.myshopify.com',
   );
 }

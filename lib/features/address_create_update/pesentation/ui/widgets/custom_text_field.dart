@@ -11,7 +11,8 @@ class CustomTextFormField extends StatelessWidget {
     this.vPadding = 8,
     this.textColor = Colors.black,
     this.hint,
-    this.maxLines = 1,
+    this.maxLines = 10,
+    this.minLines = 1,
     this.isPassword = false,
     this.containsPrefix = false,
     this.containsSuffix = false,
@@ -31,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
   bool isEnabled;
   String? hint;
   int maxLines;
+  int minLines;
 
   // Function validateFormFunction;
   TextEditingController textEditingController;
@@ -65,6 +67,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: textEditingController,
       style: interTextStyle,
       maxLines: maxLines,
+      minLines: minLines,
       textCapitalization: isPassword == true ? TextCapitalization.none : TextCapitalization.sentences,
       cursorColor: AppColors.primaryColor,
       enabled: isEnabled,

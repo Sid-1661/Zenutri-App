@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/address_list/data/repositories/address_list_repository.dart';
 import 'package:zenutri_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/forgot_password_controller.dart';
@@ -38,5 +39,6 @@ class ControllerBinder extends Bindings {
     Get.put(FavouriteController());
     Get.put(AddressListController());
     Get.put(AddressCreateUpdateController());
+    Get.put(AddressRepository());
   }
 }
