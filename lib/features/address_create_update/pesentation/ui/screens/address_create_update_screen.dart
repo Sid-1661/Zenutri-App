@@ -23,104 +23,113 @@ class AddressCreateUpdateScreen extends StatelessWidget {
           context: context,
         ),
         body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
 
-              const Text(
-                "First Name",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                textEditingController: addressCreateUpdateController.firstNameController,
-                hint: "First Name",
-              ),
-              const SizedBox(
-                height: 12,
-              ),
+                const Text(
+                  "First Name",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomTextFormField(
+                  textEditingController: addressCreateUpdateController.firstNameController,
+                  hint: "First Name",
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
 
-              const Text(
-                "Last Name",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                textEditingController: addressCreateUpdateController.lastNameController,
-                hint: "Last Name",
-              ),
-              const SizedBox(
-                height: 12,
-              ),
+                const Text(
+                  "Last Name",
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomTextFormField(
+                  textEditingController: addressCreateUpdateController.lastNameController,
+                  hint: "Last Name",
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
 
-              const Text(
-                "Address 1",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                textEditingController: addressCreateUpdateController.address1Controller,
-                hint: "Address 1",
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              const Text(
-                "Address 2",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                textEditingController: addressCreateUpdateController.address2Controller,
-                hint: "Address 2",
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              const Text(
-                "Country",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                textEditingController: addressCreateUpdateController.countryController,
-                hint: "Country",
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              const Text(
-                "City",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                textEditingController: addressCreateUpdateController.cityController,
-                hint: "City",
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              const Text(
-                "City",
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextFormField(
-                textEditingController: addressCreateUpdateController.cityController,
-                hint: "City",
-              ),
-            ],
+                const Text(
+                  "Address 1",
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomTextFormField(
+                  textEditingController: addressCreateUpdateController.address1Controller,
+                  hint: "Address 1",
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  "Address 2",
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomTextFormField(
+                  textEditingController: addressCreateUpdateController.address2Controller,
+                  hint: "Address 2",
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  "Country",
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomTextFormField(
+                  textEditingController: addressCreateUpdateController.countryController,
+                  hint: "Country",
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  "City",
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomTextFormField(
+                  textEditingController: addressCreateUpdateController.cityController,
+                  hint: "City",
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const Text(
+                  "City",
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomTextFormField(
+                  textEditingController: addressCreateUpdateController.cityController,
+                  hint: "City",
+                ),
+              ],
+            ),
           ),
         ),
       );
     });
   }
+
+
 }
