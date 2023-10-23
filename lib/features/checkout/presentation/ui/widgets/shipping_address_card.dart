@@ -108,11 +108,15 @@ Future<void> _showAlertDialog(BuildContext context, String? id) async {
     builder: (BuildContext context) {
       return AlertDialog(
         // <-- SEE HERE
-        title: Text("Address"),
+        title: Text("Delete Address", style: TextStyle(
+          fontSize: 22
+        ),),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text("Are you sure want to delete this address?"),
+              Text("Are you sure want to delete this address?", style: TextStyle(
+                fontSize: 18
+              ),),
             ],
           ),
         ),

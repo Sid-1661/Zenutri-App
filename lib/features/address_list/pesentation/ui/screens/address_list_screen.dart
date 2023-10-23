@@ -7,6 +7,8 @@ import '../../../../auth/presentation/state_holders/auth_controller.dart';
 import '../../../../checkout/presentation/ui/widgets/shipping_address_card.dart';
 import '../../../../common/presentation/utils/app_colors.dart';
 import '../../../../common/presentation/utils/spacing.dart';
+import '../../../../common/presentation/widgets/center_circular_progress_indicator.dart';
+import '../../../../common/presentation/widgets/no_data_found_widget.dart';
 import '../../state_holders/address_list_controller.dart';
 import '../widgets/app_bar.dart';
 
@@ -30,7 +32,10 @@ class AddressListScreen extends StatelessWidget {
         bottomNavigationBar: SizedBox(
           child: ElevatedButton(
             onPressed: () {
-              Get.to(AddressCreateUpdateScreen(addressForEdit: null, isForUpdateAddress: false,));
+              Get.to(AddressCreateUpdateScreen(
+                addressForEdit: null,
+                isForUpdateAddress: false,
+              ));
             },
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -46,21 +51,39 @@ class AddressListScreen extends StatelessWidget {
             child: const Text('Add Address'),
           ),
         ),
-        body: ListView.separated(
-          itemCount: Get.find<AuthController>().shopifyUser!.address!.addressList.length,
-          // itemCount: addressListController.shopifyUser.value.address!.addressList.length,
-          shrinkWrap: true,
-          primary: false,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          itemBuilder: (context, index) {
-            return ShippingAddressCard(isAddressListScreen: true, address: Get.find<AuthController>().shopifyUser!.address!.addressList[index],);
-          },
-          separatorBuilder: (context, index) {
-            return Container(
-              height: 8,
-              color: AppColors.white,
-            );
-          },
+        body: Stack(
+          children: [
+            Get.find<AuthController>().shopifyUser!.address!.addressList.isNotEmpty
+                ? ListView.separated(
+                    itemCount: Get.find<AuthController>().shopifyUser!.address!.addressList.length,
+                    // itemCount: addressListController.shopifyUser.value.address!.addressList.length,
+                    shrinkWrap: true,
+                    primary: false,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemBuilder: (context, index) {
+                      return ShippingAddressCard(
+                        isAddressListScreen: true,
+                        address: Get.find<AuthController>().shopifyUser!.address!.addressList[index],
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Container(
+                        height: 8,
+                        color: AppColors.white,
+                      );
+                    },
+                  )
+                : NoDataFoundWidget(
+                    title: "You have no address",
+                  ),
+            Visibility(
+                visible: addressListController.isLoading.value,
+                child: Container(
+                    color: AppColors.aluminium.withOpacity(.2),
+                    height: MediaQuery.sizeOf(context).height,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: const SizedBox(height: 40, width: 40, child: CenterCircularProgressLoader())))
+          ],
         ),
       );
     });

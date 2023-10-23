@@ -10,27 +10,12 @@ class AddressListController extends GetxController
 
   var addressList = <Address>[].obs;
 
-  var shopifyUser = ShopifyUser().obs;
-
-  ShopifyUser? user = Get.find<AuthController>().shopifyUser;
 
   @override
   void onInit() async {
     super.onInit();
-    fetchCustomerAddress();
   }
 
-  fetchCustomerAddress() async {
-    shopifyUser.value = Get.find<AuthController>().shopifyUser!;
-    // addressList.value = user!.address!.addressList;
-    update();
-  }
-
-  refreshAddressList() async {
-    await Get.find<AuthController>().refreshUserInfo();
-    shopifyUser.value = Get.find<AuthController>().shopifyUser!;
-    update();
-  }
 
   _showProgressBar() {
     isLoading.value = true;

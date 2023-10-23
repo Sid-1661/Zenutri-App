@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopify_flutter/models/src/shopify_user/address/address.dart';
+import 'package:zenutri_app/features/common/presentation/utils/toast_utils.dart';
 import 'package:zenutri_app/features/address_list/data/repositories/address_list_repository.dart';
 import 'package:zenutri_app/features/address_list/pesentation/state_holders/address_list_controller.dart';
+import 'package:zenutri_app/features/auth/presentation/ui/screens/splash_screen.dart';
 
 import '../../../auth/presentation/state_holders/auth_controller.dart';
 import '../../../common/domain/entities/failure.dart';
@@ -12,6 +14,8 @@ import '../../../common/domain/entities/failure.dart';
 class AddressCreateUpdateController extends GetxController with GetSingleTickerProviderStateMixin {
   var isLoading = false.obs;
   late Failure _failure;
+
+  final formKey = GlobalKey<FormState>();
 
   var firstNameController = TextEditingController(text: 'ImtiaZ');
   var lastNameController = TextEditingController(text: 'aMIN');
@@ -71,13 +75,49 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
     update();
   }
 
+  bool validatorTextData() {
+    if (firstNameController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("First name required", isError: true);
+      return false;
+    } else if (lastNameController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Last name required", isError: true);
+      return false;
+    } else if (address1Controller.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Address 1 required", isError: true);
+      return false;
+    } else if (address2Controller.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Address 2 required", isError: true);
+      return false;
+    } else if (phoneController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Phone number required", isError: true);
+      return false;
+    } else if (countryController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Country required", isError: true);
+      return false;
+    } else if (cityController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("City required", isError: true);
+      return false;
+    } else if (zipController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Zip code required", isError: true);
+      return false;
+    } else if (provinceController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Province required", isError: true);
+      return false;
+    } else if (companyController.text.toString().trim().isEmpty) {
+      ToastUtil.showToast("Company required", isError: true);
+      return false;
+    }
+
+    return true;
+  }
+
   Future<void> customerAddressCreate() async {
     _showProgressBar();
     final customerAccessToken = await Get.find<AuthController>().shopifyAuth.currentCustomerAccessToken ?? '';
 
     log("customerAccessToken $customerAccessToken");
 
-    Get.find<AddressRepository>()
+    await Get.find<AddressRepository>()
         .addressCreate(
             address1: address1Controller.value.text,
             address2: address2Controller.value.text,
@@ -93,9 +133,11 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
         .then((result) {
       result.fold((l) {
         _failure = Failure(message: 'Failed');
+        ToastUtil.showToast("Address create failed");
       }, (r) {
         log("address $r");
         resetAllTextEditingController();
+        Get.back();
       });
     });
     _hideProgressBar();
@@ -107,7 +149,7 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
 
     log("customerAccessToken $customerAccessToken");
 
-    Get.find<AddressRepository>()
+    await Get.find<AddressRepository>()
         .addressUpdate(
             addressID: addressID,
             address1: address1Controller.value.text,
@@ -124,10 +166,11 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
         .then((result) {
       result.fold((l) {
         _failure = Failure(message: 'Failed');
+        ToastUtil.showToast("Address update failed");
       }, (r) {
         log("address $r");
         resetAllTextEditingController();
-        Get.find<AddressListController>().refreshAddressList();
+        Get.back();
       });
     });
     _hideProgressBar();
@@ -139,12 +182,13 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
 
     log("customerAccessToken $customerAccessToken");
 
-    Get.find<AddressRepository>().addressDelete(addressID: addressID, customerAccessToken: customerAccessToken).then((result) {
+    await Get.find<AddressRepository>().addressDelete(addressID: addressID, customerAccessToken: customerAccessToken).then((result) {
       result.fold((l) {
         _failure = Failure(message: 'Failed');
+        ToastUtil.showToast("Address delete failed");
       }, (r) {
         log("address delete success $r");
-        Get.find<AddressListController>().refreshAddressList();
+        ToastUtil.showToast("Address deleted", isError: false);
       });
     });
     _hideProgressBar();

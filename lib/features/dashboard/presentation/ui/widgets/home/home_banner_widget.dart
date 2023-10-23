@@ -13,7 +13,7 @@ class HomeBannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100.w,
-      height: 313.rh,
+      height: 325.rh,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.rSp),
         color: AppColors.teaGreen,
