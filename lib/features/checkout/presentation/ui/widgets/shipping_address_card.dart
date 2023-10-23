@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopify_flutter/models/src/shopify_user/address/address.dart';
 import 'package:zenutri_app/features/address_create_update/pesentation/state_holders/address_create_update_controller.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
@@ -7,10 +8,13 @@ import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/svg_builder.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 
+import '../../../../address_create_update/pesentation/ui/screens/address_create_update_screen.dart';
+
 class ShippingAddressCard extends StatelessWidget {
-  ShippingAddressCard({super.key, required this.isAddressListScreen});
+  ShippingAddressCard({super.key, required this.isAddressListScreen, required this.address});
 
   bool isAddressListScreen;
+  Address? address;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +31,14 @@ class ShippingAddressCard extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  'John Smith',
+                  '${address!.name}',
                   style: Theme.of(context).textTheme.bodyLarge,
                 )),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<AddressCreateUpdateController>().setAddressDetailsForEdit(address!);
+                    Get.to(AddressCreateUpdateScreen(addressForEdit: address, isForUpdateAddress: true,));
+                  },
                   icon: const SvgBuilder(
                     path: ImageAssets.editSvg,
                     color: AppColors.black,
@@ -40,7 +47,7 @@ class ShippingAddressCard extends StatelessWidget {
                 isAddressListScreen
                     ? IconButton(
                         onPressed: () {
-                          _showAlertDialog(context);
+                          _showAlertDialog(context, address!.id);
                         },
                         icon: Icon(
                           Icons.delete_forever,
@@ -62,7 +69,7 @@ class ShippingAddressCard extends StatelessWidget {
                 horizontalSpace(8),
                 Expanded(
                   child: Text(
-                    '+1 25654 5886',
+                    '${address!.phone}',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.shadowGray),
                   ),
                 ),
@@ -81,7 +88,7 @@ class ShippingAddressCard extends StatelessWidget {
                 horizontalSpace(8),
                 Expanded(
                   child: Text(
-                    '2896 Alexander Drive Wichita Falls, TX 76301',
+                    '${address!.address1}\n${address!.address2}',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.shadowGray),
                   ),
                 ),
@@ -94,7 +101,7 @@ class ShippingAddressCard extends StatelessWidget {
   }
 }
 
-Future<void> _showAlertDialog(BuildContext context) async {
+Future<void> _showAlertDialog(BuildContext context, String? id) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true, // user must tap button!
@@ -126,7 +133,7 @@ Future<void> _showAlertDialog(BuildContext context) async {
             ),
             onPressed: () {
               Navigator.of(context).pop();
-              Get.find<AddressCreateUpdateController>().customerAddressDelete(addressID: "addressID");
+              Get.find<AddressCreateUpdateController>().customerAddressDelete(addressID: id!);
             },
           ),
         ],

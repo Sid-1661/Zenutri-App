@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopify_flutter/models/src/shopify_user/address/address.dart';
 import 'package:zenutri_app/features/address_list/data/repositories/address_list_repository.dart';
+import 'package:zenutri_app/features/address_list/pesentation/state_holders/address_list_controller.dart';
 
 import '../../../auth/presentation/state_holders/auth_controller.dart';
 import '../../../common/domain/entities/failure.dart';
@@ -30,6 +32,20 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
     super.onInit();
   }
 
+  setAddressDetailsForEdit(Address address) {
+    firstNameController.text = address.firstName!;
+    lastNameController.text = address.lastName!;
+    address1Controller.text = address.address1!;
+    address2Controller.text = address.address2!;
+    countryController.text = address.country!;
+    cityController.text = address.city!;
+    companyController.text = address.company!;
+    phoneController.text = address.phone!;
+    zipController.text = address.zip!;
+    provinceController.text = address.province!;
+    update();
+  }
+
   resetAllTextEditingController() {
     firstNameController.clear();
     lastNameController.clear();
@@ -42,6 +58,7 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
     phoneController.clear();
     zipController.clear();
     provinceController.clear();
+    update();
   }
 
   _showProgressBar() {
@@ -110,6 +127,7 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
       }, (r) {
         log("address $r");
         resetAllTextEditingController();
+        Get.find<AddressListController>().refreshAddressList();
       });
     });
     _hideProgressBar();
@@ -126,6 +144,7 @@ class AddressCreateUpdateController extends GetxController with GetSingleTickerP
         _failure = Failure(message: 'Failed');
       }, (r) {
         log("address delete success $r");
+        Get.find<AddressListController>().refreshAddressList();
       });
     });
     _hideProgressBar();

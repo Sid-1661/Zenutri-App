@@ -49,7 +49,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 )
               ],
             ),
-            ShippingAddressCard(isAddressListScreen: false,),
+            ShippingAddressCard(isAddressListScreen: false, address: null,),
             verticalSpace(34),
             Text(
               'Delivery method',

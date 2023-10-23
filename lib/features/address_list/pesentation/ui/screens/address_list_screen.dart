@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/address_create_update/pesentation/ui/screens/address_create_update_screen.dart';
 
+import '../../../../auth/presentation/state_holders/auth_controller.dart';
 import '../../../../checkout/presentation/ui/widgets/shipping_address_card.dart';
 import '../../../../common/presentation/utils/app_colors.dart';
 import '../../../../common/presentation/utils/spacing.dart';
@@ -29,7 +30,7 @@ class AddressListScreen extends StatelessWidget {
         bottomNavigationBar: SizedBox(
           child: ElevatedButton(
             onPressed: () {
-              Get.to(const AddressCreateUpdateScreen());
+              Get.to(AddressCreateUpdateScreen(addressForEdit: null, isForUpdateAddress: false,));
             },
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -46,12 +47,13 @@ class AddressListScreen extends StatelessWidget {
           ),
         ),
         body: ListView.separated(
-          itemCount: 5,
+          itemCount: Get.find<AuthController>().shopifyUser!.address!.addressList.length,
+          // itemCount: addressListController.shopifyUser.value.address!.addressList.length,
           shrinkWrap: true,
           primary: false,
           padding: const EdgeInsets.symmetric(horizontal: 16),
           itemBuilder: (context, index) {
-            return ShippingAddressCard(isAddressListScreen: true,);
+            return ShippingAddressCard(isAddressListScreen: true, address: Get.find<AuthController>().shopifyUser!.address!.addressList[index],);
           },
           separatorBuilder: (context, index) {
             return Container(

@@ -2,15 +2,17 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zenutri_app/features/address_list/data/repositories/address_list_repository.dart';
+import 'package:shopify_flutter/models/src/shopify_user/address/address.dart';
 import '../../../../address_list/pesentation/ui/widgets/app_bar.dart';
-import '../../../../auth/presentation/state_holders/auth_controller.dart';
 import '../../../../common/presentation/utils/app_colors.dart';
 import '../../state_holders/address_create_update_controller.dart';
 import '../widgets/custom_text_field.dart';
 
 class AddressCreateUpdateScreen extends StatelessWidget {
-  const AddressCreateUpdateScreen({super.key});
+  AddressCreateUpdateScreen({super.key, required this.addressForEdit, required this.isForUpdateAddress});
+
+  Address? addressForEdit;
+  bool? isForUpdateAddress;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class AddressCreateUpdateScreen extends StatelessWidget {
       return Scaffold(
         backgroundColor: AppColors.white,
         appBar: CommonAppBar(
-          title: 'Address Create',
+          title: isForUpdateAddress! ? 'Address Update' : 'Address Create',
           height: kToolbarHeight,
           elevation: 0,
           icon: Icons.arrow_back,
@@ -29,7 +31,11 @@ class AddressCreateUpdateScreen extends StatelessWidget {
         bottomNavigationBar: SizedBox(
           child: ElevatedButton(
             onPressed: () async {
-              addressCreateUpdateController.customerAddressCreate();
+              if (isForUpdateAddress!) {
+                addressCreateUpdateController.customerAddressUpdate(addressForEdit!.id!);
+              } else {
+                addressCreateUpdateController.customerAddressCreate();
+              }
             },
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -38,7 +44,7 @@ class AddressCreateUpdateScreen extends StatelessWidget {
                 ),
               ),
             ),
-            child: const Text('Add Address'),
+            child: Text(isForUpdateAddress! ? 'Update' : 'Create'),
           ),
         ),
         body: SingleChildScrollView(
@@ -71,12 +77,10 @@ class AddressCreateUpdateScreen extends StatelessWidget {
                 const SizedBox(
                   height: 12,
                 ),
-
                 addressInputItem(title: "Phone", hint: "For example, +16135551111.", textEditingController: addressCreateUpdateController.phoneController),
                 const SizedBox(
                   height: 12,
                 ),
-
                 addressInputItem(title: "Country", hint: "Enter Your Country", textEditingController: addressCreateUpdateController.countryController),
                 const SizedBox(
                   height: 12,
@@ -106,7 +110,12 @@ class AddressCreateUpdateScreen extends StatelessWidget {
     });
   }
 
-  Widget addressInputItem({required String title, required String hint, required TextEditingController textEditingController, int? minLines,}) {
+  Widget addressInputItem({
+    required String title,
+    required String hint,
+    required TextEditingController textEditingController,
+    int? minLines,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
