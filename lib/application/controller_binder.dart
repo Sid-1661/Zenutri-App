@@ -12,6 +12,7 @@ import 'package:zenutri_app/features/dashboard/presentation/controllers/home_pro
 import 'package:zenutri_app/features/favourite/data/repositories/favourite_repository.dart';
 import 'package:zenutri_app/features/favourite/presentation/state_holders/favourite_controller.dart';
 import 'package:zenutri_app/features/product/data/repositories/product_repository.dart';
+import 'package:zenutri_app/features/product/pesentation/state_holders/search_product_controller.dart';
 import 'package:zenutri_app/features/profile/data/repositories/profile_repository.dart';
 import 'package:zenutri_app/features/profile/presentation/state_holders/change_password_controller.dart';
 import 'package:zenutri_app/features/profile/presentation/state_holders/update_profile_controller.dart';
@@ -37,6 +38,7 @@ class ControllerBinder extends Bindings {
     Get.put(CartController());
     Get.put(FavouriteRepository());
     Get.put(FavouriteController());
+    Get.put(SearchProductController());
     Get.put(AddressListController());
     Get.put(AddressCreateUpdateController());
     Get.put(AddressRepository());

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopify_flutter/shopify_flutter.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/center_circular_progress_indicator.dart';
 import 'package:zenutri_app/features/common/presentation/widgets/product_card.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/dashboard_bottom_nav_controller.dart';
-import 'package:zenutri_app/features/favourite/data/models/favourite.dart';
 import 'package:zenutri_app/features/favourite/presentation/state_holders/favourite_controller.dart';
 
 class FavouriteScreen extends StatefulWidget {
@@ -79,13 +79,13 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   children: [
                     verticalSpace(8),
                     Text(
-                      '${controller.favouriteList.length} Items',
+                      '${controller.favouriteProductList.length} Items',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontSize: 22.rSp
                       ),
                     ),
                     verticalSpace(16),
-                    productGridView(controller.favouriteList),
+                    productGridView(controller.favouriteProductList),
                   ],
                 ),
               ),
@@ -96,7 +96,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     );
   }
 
-  GridView productGridView(List<Favourite> favouriteList) {
+  GridView productGridView(List<Product> favouriteList) {
     return GridView.builder(
       primary: false,
       shrinkWrap: true,
@@ -108,7 +108,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           crossAxisSpacing: 8.rSp,
           mainAxisSpacing: 8.rSp),
       itemBuilder: (context, index) {
-        // return const ProductCard(product: );
+        return ProductCard(product: favouriteList[index]);
       },
     );
   }

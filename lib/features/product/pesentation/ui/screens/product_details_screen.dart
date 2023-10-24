@@ -3,6 +3,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:shopify_flutter/shopify_flutter.dart';
+import 'package:zenutri_app/features/carts/data/models/cart.dart';
+import 'package:zenutri_app/features/carts/presentation/state_holders/cart_controller.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
@@ -206,7 +208,18 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
           horizontalSpace(12),
           Expanded(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                Cart cart = Cart(
+                  widget.product.title, widget.product.image, widget.product.id,
+                  widget.product.price,);
+                await Get.find<CartController>().addToCart(cart);
+                Get.showSnackbar(
+                  const GetSnackBar(
+                    title: 'Add to cart',
+                    message: 'Product added to cart',
+                  ),
+                );
+              },
               child: const Text('Add to Cart'),
             ),
           )
@@ -226,7 +239,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
         CircleAvatar(
           backgroundColor: Colors.white,
           child: IconButton(
-            onPressed: () {
+            onPressed: () async {
               if (!isFavourite) {
                 Get.find<FavouriteController>().addToFavourite(
                   Favourite(
@@ -238,7 +251,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
                 );
                 isFavourite = true;
               } else {
-                Get.find<FavouriteController>().removeFromFavourite(widget.product.id);
+                await Get.find<FavouriteController>().removeFromFavourite(widget.product.id);
                 isFavourite = false;
               }
               if (mounted) {

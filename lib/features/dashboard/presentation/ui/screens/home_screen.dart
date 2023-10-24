@@ -6,6 +6,7 @@ import 'package:zenutri_app/features/common/presentation/widgets/product_card.da
 import 'package:zenutri_app/core/extensions/size_extension.dart';
 import 'package:zenutri_app/features/dashboard/presentation/controllers/home_products_controller.dart';
 import 'package:zenutri_app/features/dashboard/presentation/ui/widgets/home/home_banner_widget.dart';
+import 'package:zenutri_app/features/product/pesentation/ui/screens/search_product_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,9 +37,15 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 verticalSpace(16),
-                const TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search), hintText: 'Search'),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const SearchProductScreen());
+                  },
+                  child: const TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.search), hintText: 'Search'),
+                  ),
                 ),
                 verticalSpace(32),
                 const HomeBannerWidget(),
