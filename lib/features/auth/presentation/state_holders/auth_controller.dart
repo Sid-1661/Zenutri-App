@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:shopify_flutter/models/src/shopify_user/shopify_user.dart';
 import 'package:shopify_flutter/shopify/shopify.dart';
 import 'dart:developer';
 
-class AuthController {
+class AuthController extends GetxController {
   final shopifyAuth = ShopifyAuth.instance;
-  ShopifyUser? shopifyUser;
+  ShopifyUser? shopifyUser = ShopifyUser();
 
   Future<bool> checkIfLoggedIn() async {
     try {
@@ -36,15 +37,19 @@ class AuthController {
     } catch (e) {
       debugPrint(e.toString());
       return false;
+    } finally{
+      update();
     }
   }
 
   Future<void> logout() async {
     await shopifyAuth.signOutCurrentUser();
+    update();
   }
 
   Future<void> refreshUserInfo() async {
     shopifyUser = await shopifyAuth.currentUser();
+    update();
   }
 
   String get userFullName {

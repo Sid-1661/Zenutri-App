@@ -18,7 +18,6 @@ import 'package:zenutri_app/features/profile/presentation/state_holders/change_p
 import 'package:zenutri_app/features/profile/presentation/state_holders/update_profile_controller.dart';
 
 import '../features/address_create_update/pesentation/state_holders/address_create_update_controller.dart';
-import '../features/address_list/pesentation/state_holders/address_list_controller.dart';
 
 class ControllerBinder extends Bindings {
   @override
@@ -39,7 +38,6 @@ class ControllerBinder extends Bindings {
     Get.put(FavouriteRepository());
     Get.put(FavouriteController());
     Get.put(SearchProductController());
-    Get.put(AddressListController());
     Get.put(AddressCreateUpdateController());
     Get.put(AddressRepository());
   }

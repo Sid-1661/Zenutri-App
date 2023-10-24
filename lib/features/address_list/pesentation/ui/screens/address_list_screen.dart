@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zenutri_app/core/extensions/size_extension.dart';
+import 'package:zenutri_app/features/address_create_update/pesentation/state_holders/address_create_update_controller.dart';
 import 'package:zenutri_app/features/address_create_update/pesentation/ui/screens/address_create_update_screen.dart';
 
 import '../../../../auth/presentation/state_holders/auth_controller.dart';
@@ -9,7 +10,6 @@ import '../../../../common/presentation/utils/app_colors.dart';
 import '../../../../common/presentation/utils/spacing.dart';
 import '../../../../common/presentation/widgets/center_circular_progress_indicator.dart';
 import '../../../../common/presentation/widgets/no_data_found_widget.dart';
-import '../../state_holders/address_list_controller.dart';
 import '../widgets/app_bar.dart';
 
 class AddressListScreen extends StatelessWidget {
@@ -17,7 +17,7 @@ class AddressListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AddressListController>(builder: (addressListController) {
+    return GetBuilder<AuthController>(builder: (authController) {
       return Scaffold(
         backgroundColor: AppColors.white,
         appBar: CommonAppBar(
@@ -53,9 +53,9 @@ class AddressListScreen extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            Get.find<AuthController>().shopifyUser!.address!.addressList.isNotEmpty
+            authController.shopifyUser!.address!.addressList.isNotEmpty
                 ? ListView.separated(
-                    itemCount: Get.find<AuthController>().shopifyUser!.address!.addressList.length,
+                    itemCount: authController.shopifyUser!.address!.addressList.length,
                     // itemCount: addressListController.shopifyUser.value.address!.addressList.length,
                     shrinkWrap: true,
                     primary: false,
@@ -63,7 +63,7 @@ class AddressListScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ShippingAddressCard(
                         isAddressListScreen: true,
-                        address: Get.find<AuthController>().shopifyUser!.address!.addressList[index],
+                        address: authController.shopifyUser!.address!.addressList[index],
                       );
                     },
                     separatorBuilder: (context, index) {
@@ -77,7 +77,7 @@ class AddressListScreen extends StatelessWidget {
                     title: "You have no address",
                   ),
             Visibility(
-                visible: addressListController.isLoading.value,
+                visible: Get.find<AddressCreateUpdateController>().isLoading.value,
                 child: Container(
                     color: AppColors.aluminium.withOpacity(.2),
                     height: MediaQuery.sizeOf(context).height,

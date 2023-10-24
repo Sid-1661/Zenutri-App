@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/address_create_update/pesentation/ui/screens/address_create_update_screen.dart';
 import 'package:zenutri_app/features/common/presentation/utils/app_colors.dart';
 import 'package:zenutri_app/features/common/presentation/utils/image_assets.dart';
 import 'package:zenutri_app/features/common/presentation/utils/spacing.dart';
@@ -39,7 +40,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       ?.copyWith(fontSize: 20.rSp, fontWeight: FontWeight.w600),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(AddressCreateUpdateScreen(addressForEdit: null, isForUpdateAddress: false));
+                  },
                   child: Text(
                     'Add new',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(

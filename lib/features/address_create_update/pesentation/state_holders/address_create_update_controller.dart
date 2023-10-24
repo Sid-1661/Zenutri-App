@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:shopify_flutter/models/src/shopify_user/address/address.dart';
 import 'package:zenutri_app/features/common/presentation/utils/toast_utils.dart';
 import 'package:zenutri_app/features/address_list/data/repositories/address_list_repository.dart';
-import 'package:zenutri_app/features/address_list/pesentation/state_holders/address_list_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/ui/screens/splash_screen.dart';
 
 import '../../../auth/presentation/state_holders/auth_controller.dart';

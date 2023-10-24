@@ -18,7 +18,7 @@ class ShippingAddressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return address!=null? Card(
       elevation: 0,
       margin: EdgeInsets.zero,
       color: AppColors.softWhite,
@@ -97,7 +97,7 @@ class ShippingAddressCard extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ) : SizedBox.shrink();
   }
 }
 
