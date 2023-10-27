@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:zenutri_app/features/address_list/data/repositories/address_list_repository.dart';
 import 'package:zenutri_app/features/auth/data/repositories/auth_repository.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/auth_controller.dart';
 import 'package:zenutri_app/features/auth/presentation/state_holders/forgot_password_controller.dart';
@@ -15,6 +16,9 @@ import 'package:zenutri_app/features/product/pesentation/state_holders/search_pr
 import 'package:zenutri_app/features/profile/data/repositories/profile_repository.dart';
 import 'package:zenutri_app/features/profile/presentation/state_holders/change_password_controller.dart';
 import 'package:zenutri_app/features/profile/presentation/state_holders/update_profile_controller.dart';
+
+import '../features/address_create_update/pesentation/state_holders/address_create_update_controller.dart';
+import '../features/address_list/pesentation/state_holders/address_list_controller.dart';
 
 class ControllerBinder extends Bindings {
   @override
@@ -34,6 +38,9 @@ class ControllerBinder extends Bindings {
     Get.put(CartController());
     Get.put(FavouriteRepository());
     Get.put(FavouriteController());
+    Get.put(AddressListController());
+    Get.put(AddressCreateUpdateController());
+    Get.put(AddressRepository());
     Get.put(SearchProductController());
   }
 }

@@ -21,4 +21,8 @@ class ImageAssets {
   static const String shippingCarSvg = 'assets/icons/shipping-car.svg';
   static const String refundSvg = 'assets/icons/refund.svg';
   static const String lockSvg = 'assets/icons/lock.svg';
+
+  ///LOTTIE ASSETS
+  static const String searchEmpty = 'assets/lottie/search_empty.json';
+  static const String emptyCart = 'assets/lottie/empty_cart.json';
 }
